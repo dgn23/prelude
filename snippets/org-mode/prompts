@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: prompts
+# key: pro1
+# binding: direct-keybinding
+# --
+
+This paper addresses prompt ${} and ${}. 

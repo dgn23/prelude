@@ -1,0 +1,15 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(#1=(#("Programming-Emacs-Lisp-TOC" 0 1
+      (bmkp-full-record #1#)
+      1 26
+      (bmkp-full-record #1#))
+    (front-context-string . "* Menu:\n\n* Prefa")
+    (rear-context-string . "every chapter.\n\n")
+    (position . 3021)
+    (filename . "/Applications/Emacs.app/Contents/Resources/info/eintr")
+    (info-node . "Top")
+    (handler . Info-bookmark-jump))
+)

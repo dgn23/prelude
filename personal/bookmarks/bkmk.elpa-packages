@@ -1,0 +1,247 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(#1=(#("bindings" 0 1
+      (bmkp-full-record #1#)
+      1 8
+      (bmkp-full-record #1#))
+    (filename . "~/Documents/crowdox/norang.ca - [org-mode].org")
+    (front-context-string . "---------+------")
+    (rear-context-string . "| Used       |\n|")
+    (position . 12545))
+#1=(#("cmds-menu.el" 0 1
+      (bmkp-full-record #1#)
+      1 12
+      (bmkp-full-record #1#))
+    (time 21807 11193 776166 0)
+    (visits . 0)
+    (filename . "~/.emacs.d/elpa/cmds-menu-20150104.2134/cmds-menu.el")
+    (front-context-string . ";; Put this in y")
+    (rear-context-string . "using `M-x'.\n;;\n")
+    (position . 1007))
+#1=(#("company-auctex.el" 0 1
+      (bmkp-full-record #1#)
+      1 17
+      (bmkp-full-record #1#))
+    (time 21803 13409 693735 0)
+    (visits . 0)
+    (filename . "~/.emacs.d/elpa/company-auctex-20150403.938/company-auctex.el")
+    (front-context-string . "\n;;; Code:\n\n(req")
+    (rear-context-string . " documentation!\n")
+    (position . 1181))
+#1=(#("egg.info" 0 1
+      (bmkp-full-record #1#)
+      1 8
+      (bmkp-full-record #1#))
+    (filename . "~/.emacs.d/elpa/egg-20150208.1815/egg.info")
+    (front-context-string . "This is egg.info")
+    (rear-context-string)
+    (position . 1))
+#1=(#("email-dot-el" 0 1
+      (bmkp-full-record #1#)
+      1 12
+      (bmkp-full-record #1#))
+    (time 21802 64630 870248 0)
+    (visits . 0)
+    (filename . "~/git/jmax/email.el")
+    (front-context-string . ";;; email.el ---")
+    (rear-context-string)
+    (position . 1))
+#1=(#("evernote-org" 0 1
+      (bmkp-full-record #1#)
+      1 12
+      (bmkp-full-record #1#))
+    (filename . "~/.emacs.d/elpa/evernote-mode-0.41/doc/readme_en.org")
+    (buffer-name . "readme_en.org")
+    (front-context-string . "#+TITLE:    Emac")
+    (rear-context-string)
+    (front-context-region-string)
+    (rear-context-region-string)
+    (visits . 1)
+    (time 21800 44339 894082 0)
+    (created 21796 22898 931845 0)
+    (position . 1))
+#1=(#("evil.info" 0 1
+      (bmkp-full-record #1#)
+      1 9
+      (bmkp-full-record #1#))
+    (tags "evil")
+    (filename . "~/.emacs.d/elpa/evil-20150401.900/evil.info")
+    (buffer-name . "evil.info")
+    (front-context-string . "This is evil.inf")
+    (rear-context-string)
+    (front-context-region-string)
+    (rear-context-region-string)
+    (visits . 0)
+    (time . #2=(21801 39086 214195 0))
+    (created . #2#)
+    (position . 1))
+#1=(#("FAQ.org" 0 1
+      (bmkp-full-record #1#)
+      1 7
+      (bmkp-full-record #1#))
+    (filename . "~/git/jmax/techela/FAQ.org")
+    (front-context-string . "\ngit commit -m \"")
+    (rear-context-string . "onf/student-work")
+    (position . 1689))
+#1=(#("gnus-x-gm-raw-readme.txt" 0 1
+      (bmkp-full-record #1#)
+      1 24
+      (bmkp-full-record #1#))
+    (tags)
+    (filename . "~/.emacs.d/elpa/gnus-x-gm-raw-readme.txt")
+    (buffer-name . "gnus-x-gm-raw-readme.txt")
+    (front-context-string . "\nNothing.\n\nCusto")
+    (rear-context-string . "\nConfiguration:\n")
+    (front-context-region-string)
+    (rear-context-region-string)
+    (visits . 1)
+    (time 21802 64607 343200 0)
+    (created 21801 40380 158978 0)
+    (position . 526))
+#1=(#("gnus.el" 0 1
+      (bmkp-full-record #1#)
+      1 7
+      (bmkp-full-record #1#))
+    (tags)
+    (filename . "~/.emacs.d/gnus.el")
+    (buffer-name . "gnus.el")
+    (front-context-string . "t\n      gnus-age")
+    (rear-context-string . "us-asynchronous ")
+    (front-context-region-string)
+    (rear-context-region-string)
+    (visits . 0)
+    (time . #2=(21816 33463 363852 0))
+    (created . #2#)
+    (position . 1192))
+#1=(#("highlight-tail" 0 1
+      (bmkp-full-record #1#)
+      1 14
+      (bmkp-full-record #1#))
+    (tags)
+    (filename . "~/.emacs.d/elpa/highlight-tail-readme.txt")
+    (buffer-name . "highlight-tail-readme.txt")
+    (front-context-string . "=== WHAT IS IT?\n")
+    (rear-context-string)
+    (front-context-region-string)
+    (rear-context-region-string)
+    (visits . 0)
+    (time . #2=(21804 49891 85473 0))
+    (created . #2#)
+    (position . 1))
+#1=(#("INSTALL" 0 1
+      (bmkp-full-record #1#)
+      1 7
+      (bmkp-full-record #1#))
+    (filename . "~/.emacs.d/elisp/predictive/predictive/packaging/auto-overlays/INSTALL")
+    (front-context-string . "\nObtaining\n-----")
+    (rear-context-string)
+    (position . 1))
+#1=(#("latex-extra" 0 11
+      (bmkp-full-record #1#))
+    (annotation)
+    (tags)
+    (filename . "~/.emacs.d/elpa/latex-extra-readme.txt")
+    (buffer-name . "latex-extra-readme.txt")
+    (front-context-string . "ice will expand ")
+    (rear-context-string . ". Hitting tab tw")
+    (front-context-region-string)
+    (rear-context-region-string)
+    (visits . 0)
+    (time . #2=(21822 1701 693403 0))
+    (created . #2#)
+    (position . 733))
+#1=(#("latex-starter-kit.el" 0 20
+      (bmkp-full-record #1#))
+    (tags)
+    (filename . "~/.emacs.d/starter-kit-latex.el")
+    (buffer-name . "starter-kit-latex.el")
+    (front-context-string . "        (local-s")
+    (rear-context-string . "ok #'(lambda ()\n")
+    (front-context-region-string)
+    (rear-context-region-string)
+    (visits . 0)
+    (time . #2=(21822 10258 205482 0))
+    (created . #2#)
+    (position . 2202))
+#1=(#("mediawiki-dot-el" 0 1
+      (bmkp-full-record #1#)
+      1 16
+      (bmkp-full-record #1#))
+    (filename . "~/git/prelude/modules/prelude-mediawiki.el")
+    (front-context-string . "\n;; along with G")
+    (rear-context-string . "l Public License")
+    (position . 952))
+#1=(#("predictive.el" 0 1
+      (bmkp-full-record #1#)
+      1 13
+      (bmkp-full-record #1#))
+    (filename . "~/.emacs.d/elisp/predictive/predictive/predictive.el")
+    (front-context-string . ";;; predictive.e")
+    (rear-context-string)
+    (position . 1))
+#1=(#("prelude-helm.el" 0 1
+      (bmkp-full-record #1#)
+      1 15
+      (bmkp-full-record #1#))
+    (filename . "~/git/prelude/modules/prelude-helm.el")
+    (front-context-string . ";;; prelude-helm")
+    (rear-context-string)
+    (position . 1))
+#1=(#("quick-guide.org" 0 1
+      (bmkp-full-record #1#)
+      1 15
+      (bmkp-full-record #1#))
+    (filename . "~/.emacs.d/elpa/org-page-20150312.2314/doc/quick-guide.org")
+    (front-context-string . "  : ;;; the conf")
+    (rear-context-string . " ;; your domain\n")
+    (position . 1358))
+#1=(#("swoop" 0 1
+      (bmkp-full-record #1#)
+      1 5
+      (bmkp-full-record #1#))
+    (tags)
+    (filename . "~/.emacs.d/elpa/swoop-readme.txt")
+    (buffer-name . "swoop-readme.txt")
+    (front-context-string . "Feature:\n* Searc")
+    (rear-context-string)
+    (front-context-region-string)
+    (rear-context-region-string)
+    (visits . 1)
+    (time 21805 42096 120293 0)
+    (created 21804 49298 375400 0)
+    (position . 1))
+#1=(#("synosaurus-openthesaurus.el" 0 1
+      (bmkp-full-record #1#)
+      1 27
+      (bmkp-full-record #1#))
+    (filename . "~/.emacs.d/elpa/synosaurus-20150203.239/synosaurus-openthesaurus.el")
+    (front-context-string . "        (error \"")
+    (rear-context-string . "  (if (not buf)\n")
+    (position . 1551))
+#1=(#("techela-faq.org" 0 1
+      (bmkp-full-record #1#)
+      1 15
+      (bmkp-full-record #1#))
+    (filename . "~/git/jmax/techela/FAQ.org")
+    (front-context-string . "\ngit commit -m \"")
+    (rear-context-string . "onf/student-work")
+    (position . 1689))
+#1=(#("techela-files" 0 1
+      (bmkp-full-record #1#)
+      1 13
+      (bmkp-full-record #1#))
+    (filename . "~/git/jmax/techela/")
+    (front-context-string . "techela-setup.el")
+    (rear-context-string . "11 Feb 11 13:19 ")
+    (position . 1057))
+#1=(#("techela-readme.org" 0 1
+      (bmkp-full-record #1#)
+      1 18
+      (bmkp-full-record #1#))
+    (filename . "~/git/jmax/techela/README.org")
+    (front-context-string . "#+TITLE: Techela")
+    (rear-context-string)
+    (position . 1))
+)
