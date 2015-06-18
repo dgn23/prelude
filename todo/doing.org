@@ -1,0 +1,17 @@
+#+TITLE: doing
+#+STARTUP: overview
+#+TODO: TODO LATER | DONE
+
+* DONE Figuring out how org-doing works
+  CLOSED: [2015-06-16 Tue 17:47]
+  :LOGBOOK:
+  - State "DONE"       from "TODO"       [2015-06-16 Tue 17:47]
+  :END:
+  <2015-06-16 Tue 17:46>
+** So I think org-doing is just a wrapper over some basic org-mode functionality
+I've set it up so that the org-doing (for now, or for this very doc at least) goes into my todo file in my .emacs.
+*** I might want to move this into ~/org/ though...
+** Check out [[file:~/.emacs.d/el-get/org-doing/README.md][Org-doing Readme.org]]
+
+* TODO Working on Locke15 Paper
+  <2015-06-16 Tue 17:42>

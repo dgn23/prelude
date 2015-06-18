@@ -10,16 +10,33 @@
 (require 'company)
 (require 'solarized)
 
+;; Loading solarized instead of zenburn as the default.
+;;  Working on custom/personal theme [[DGN-Solarized ]]
+(load-theme 'solarized)
 
 ;; PATH Setup
 (setenv  "PATH" (concat "/usr/local/bin:/opt/local/bin:/usr/bin:/bin:/usr/texbin:
 ~/Library/Haskell/bin:" (getenv "PATH")))
 
+;;; Make it so eshell has the right path (more or less)
+(require 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
+
+;; setting up deft to work with nvalt as per http://rwx.io/blog/2013/03/04/nvalt-and-emacs/
+;; (setq deft-extension "md")
+;; (setq deft-directory "~/Development/wikis/Notes.wiki/")
+;; (setq deft-text-mode 'markdown-mode)
+;; (setq deft-use-filename-as-title t)
+
+
+;;; Gets rid of that annoying magit 1.4.0 message re: buffer reversion.
+(setq magit-last-seen-setup-instructions "1.4.0")
+
 ;;; Tell Emacs about elget packages
 (add-to-list 'load-path "~/.emacs.d/el-get/" )
 (add-to-list 'load-path "~/.emacs.d/themes/emacs-color-theme-solarized/")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-;;(add-to-list 'custom-theme-load-path "~/.emacs.d/DGN-Solarized-Theme.el")
+;;(add-to-list 'custom-theme-load-path "~/.emacs.d/elisp/DGN-Solarized-theme.el")
 
 ;; FLYSPELL SETTINGS
 
@@ -87,7 +104,7 @@
 (fancy-battery-mode t)
 (fancy-narrow-mode t)
 (golden-ratio-mode t)
-
+(exec-path-from-shell-initialize)
 
 
 ;;; TODO: Move to org-settings and off-load as much as possible from custom.el
