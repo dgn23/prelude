@@ -1,5 +1,7 @@
 ;;;; Provides ORG-SETUP.EL for DGN-MBP
 
+(add-to-list 'load-path "~/.emacs.d/el-get/")
+(add-to-list 'load-path "~/emacs.d/elisp/sandbox/")
 (require 'org-ac)
 (require 'org-bullets)
 
@@ -103,7 +105,6 @@
             (local-set-key (kbd "C-c w") 'org-wc-display)
             (local-set-key (kbd "C-c C-v w") 'org-wc-remove-overlays)))
 
-
 ;(add-hook 'org-mode-hook
 ;          (lambda ()
 ;            (set-face-attribute 'org-level-1 t :Inherit  :foreground "DarkOliveGreen4" :weight normal :height 1.5)
@@ -121,6 +122,6 @@
 ;; Set to <your Dropbox root directory>/MobileOrg.
 (setq org-mobile-directory "~/Dropbox/MobileOrg")
 ;; Set to the files (or directory of files) you want sync'd
-(setq org-agenda-files (quote ("~/Dropbox/org")))
+(setq org-agenda-files (quote ("~/org/agenda/agenda.org")))
 ;; Set to the name of the file where new notes will be stored
 (setq org-mobile-inbox-for-pull "~/Dropbox/org/from-mobile.org")

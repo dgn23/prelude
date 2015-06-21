@@ -21,15 +21,11 @@
 
 ;; PATH Setup
 (setenv  "PATH" (concat "/usr/local/bin:/opt/local/bin:/usr/bin:/bin:/usr/texbin:
-~/Library/Haskell/bin:" (getenv "PATH")))
+~/Library/Haskell/bin:opt/local/share/:" (getenv "PATH")))
 
 ;;; Make it so eshell has the right path (more or less)
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)
-
-
-
-
 
 ;; Requirements
 (require 'cl)
