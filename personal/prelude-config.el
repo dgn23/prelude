@@ -1,68 +1,71 @@
-;; DGN-PRELUDE-CONFIG:
-;;; MINOR CONFIG SETTINGS LOADED AFTER PRELUDE CORE
+;;; prelude-config.el --- Emacs DGN-Local-Prelude
 
 ;;; Pallet Config -- not so sure about this. I think I'm going to try and use use-package instead
-(require 'cask " /Users/dustinneuman/.emacs.d/elpa/cask-20150528.752/cask.el")
+(require 'cask "/usr/local/Cellar/cask/0.7.2/cask.el")
 (cask-initialize)
 (require 'pallet)
 (pallet-mode t)
+
+;(eval-when-compile  (require 'use-package))
+
+(require 'use-package)
+(require 'bind-key)
+(require 'diminish)
+
+(require 'cl)
+(require 'cl-lib)
+(require 'uniquify)
+
+;; ispell
+(require 'ispell)
+(setq ispell-program-name "/usr/local/bin/aspell")
+(setq ispell-personal-dictionary "~/.aspell.en.pws")
 
 ;; run emacs in server mode
 (server-start)
 
 ;;; Tell Emacs about elget packages
 (add-to-list 'load-path "~/.emacs.d/el-get/" )
-(add-to-list 'load-path "~/.emacs.d/themes/emacs-color-theme-solarized/")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(add-to-list 'load-path "~/.emacs.d/themes/")
+(add-to-list 'load-path "~/.emacs.d/elisp/externals/")
+(add-to-list 'load-path "~/.emacs.d/predictive/")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized")
 
-;;(add-to-list 'custom-theme-load-path "~/.emacs.d/elisp/DGN-Solarized-theme.el")
-(add-to-list 'load-path "~/.emacs.d/elisp/sandbox/")
-(load "~/.emacs.d/elisp/DGN-Solarized-theme.el" t)
+;; The good solarized lives here
+(add-to-list 'load-path "~/.emacs.d/elisp/solarized-emacs/")
+(if (load "~/.emacs.d/elisp/solarized-emacs/solarized")
+    (load "~/.emacs.d/elisp/solarized-emacs/solarized-theme")
+  and (load "~/.emacs.d/elisp/solarized-emacs/solarized-dark-theme"))
 
 ;; PATH Setup
 (setenv  "PATH" (concat "/usr/local/bin:/opt/local/bin:/usr/bin:/bin:/usr/texbin:
 ~/Library/Haskell/bin:opt/local/share/:" (getenv "PATH")))
 
-;;; Make it so eshell has the right path (more or less)
-(require 'exec-path-from-shell)
-(exec-path-from-shell-initialize)
-
 ;; Requirements
-(require 'cl)
-(require 'cl-lib)
-(require 'uniquify)
-(require 'flyspell)
-(require 'helm)
-(require 'company)
-(require 'auto-complete-auctex)
-(require 'org-notify)
-
-
-;; setting up deft to work with nvalt as per http://rwx.io/blog/2013/03/04/nvalt-and-emacs/
-(require 'deft)
-(setq deft-extension "md")
-(setq deft-directory "~/Dropbox/.deft")
-(setq deft-text-mode 'markdown-mode)
-(setq deft-use-filename-as-title t)
-
-
-;;; Gets rid of that annoying magit 1.4.0 message re: buffer reversion.
+(use-package flyspell)
+(use-package helm :ensure t )
+(use-package exec-path-from-shell :ensure t :config (exec-path-from-shell-initialize))
+(use-package org-notify :defer t)
+(use-package company :ensure t :bind ("C-x p" .   company-complete) :config (global-company-mode t))
+;(use-package auto-complete-latex :load-path "~/.emacs.d/elisp/externals/" :defer t)
+(use-package auto-complete-auctex :load-path"~/.emacs.d/elisp/externals/"	:defer t)
+(use-package guide-key :load-path "~/.emacs.d/el-get/guide-key/"
+	:init (setq guide-key/guide-key-sequence t) (setq guide-key/idle-delay 0.7) :config (guide-key-mode 1))
+(use-package guide-key-tip :load-path "~/.emacs.d/el-get/guide-key-tip" :config (setq guide-key-tip/enabled t))
+(use-package deft	:defer t	:config (setq deft-extension "md") (setq deft-directory "~/Dropbox/.deft")
+	(setq deft-text-mode 'markdown-mode) (setq deft-use-filename-as-title t))
+(use-package icicle	:defer t	:config (icicle-mode t))
+(use-package golden-ratio :ensure t :config (golden-ration-mode t))
+(use-package pretty-mode :ensure t :config (pretty-mode t))
+(use-package edit-server :if window-system :init (add-hook 'after-init-hook 'server-start t) (add-hook 'after-init-hook 'edit-server-start t))
+;;; Gets rid of that annoying magit 1.4.0 message re: buffer reversion
 (setq magit-last-seen-setup-instructions "1.4.0")
 
-;; FLYSPELL SETTINGS
+;; ispell
+(require 'ispell)
+(setq ispell-program-name "/usr/local/bin/aspell")
+(setq ispell-personal-dictionary "~/.aspell.en.pws")
 
-  (require 'flyspell)
-  (setq ispell-program-name "aspell"
-        ispell-dictionary "en_US"
-        ispell-dictionary-alist
-        (let ((default '("[A-Za-z]" "[^A-Za-z]" "[']" nil
-                         ("-B" "-d" "english")
-                         nil iso-8859-1)))
-          `((nil ,@default)
-            ("english" ,@default))))
-        (setq ispell-extra-args '("--sug-mode=ultra"))
-  ;;(setq ispell-personal-dictionary "~/.aspell.en.pws")
-  (setq flyspell-issue-message-flag nil)
 
 ;; Trackpad scrolling
 (global-set-key [wheel-up] 'previous-line)
@@ -73,22 +76,17 @@
 (global-set-key [double-wheel-left] 'next-line)
 
 ;; fonts
- (defun font-existsp (font)
+(defun font-existsp (font)
 "Check to see if the named FONT is available."
  (if (null (x-list-fonts font)) nil t))
  ;; Set default font. First one found is selected.
- (cond ((eq window-system nil) nil)
+(cond
+ ((eq window-system nil) nil)
  ((font-existsp "Myriad Pro")
 	 (set-face-attribute 'default nil :height 131 :font "Myriad Pro"))
 ((font-existsp "Source Code Pro")
- (set-face-attribute 'default nil :height 121:font "Source Code Pro"))
-((font-existsp "Menlo")
-	(set-face-attribute 'default nil :height 121 :font "Menlo"))
-((font-existsp "Consolas") (set-face-attribute 'default nil :height 121 :font "Consolas"))
-((font-existsp "Inconsolata")
-	(set-face-attribute 'default nil :height 121 :font "Inconsolata"))
-((font-existsp "Envy Code R")
- (set-face-attribute 'default nil :height 121 :font "Envy Code R")))
+ (set-face-attribute 'default nil :height 121:font "Source Code Pro")))
+
 
 ;;TODO: Add mode-hooks for faces/fonts. Source Code/(In)Consolata
 ;; in programming modes and Myriad in text modes.
@@ -104,9 +102,8 @@
 
 
 ;;;PRETTIFICATION
-(icicle-mode t)
-(pretty-mode t)
-(prettify-symbols-mode t)
+
+(global-prettify-symbols-mode t)
 (pretty-lambda-mode t)
 (global-prettify-symbols-mode t)
 (set-cursor-color "blue")
@@ -114,9 +111,6 @@
 (rainbow-mode t)
 (fancy-battery-mode t)
 (fancy-narrow-mode t)
-(golden-ratio-mode t)
-(exec-path-from-shell-initialize)
-
 
 ;;; TODO: Move to org-settings and off-load as much as possible from custom.el
 
@@ -132,61 +126,11 @@
 
 ;;; Auctex Settings
 
-(require 'latex-pretty-symbols)
-(require 'reftex)
 
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)   ; with AUCTeX LaTeX mode
-(add-hook 'pandoc-mode-hook 'turn-on-reftex)  ; with Pandoc mode
-(autoload 'reftex-mode     "reftex" "RefTeX Minor Mode" t)
-(autoload 'turn-on-reftex  "reftex" "RefTeX Minor Mode" nil)
-(autoload 'reftex-citation "reftex-cite" "Make citation" nil)
-(autoload 'reftex-index-phrase-mode "reftex-index" "Phrase mode" t)
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)   ; with AUCTeX LaTeX mode
-(add-hook 'latex-mode-hook 'turn-on-reftex)   ; with Emacs latex mode
-(add-hook 'LaTeX-mode-hook 'company-auctex-init)
+(load "~/.emacs.d/personal/prelude-latex.el")
+ ;(require 'latex-pretty-symbols)
+;(require 'reftex)
 
-;; Make RefTeX faster
-(setq reftex-enable-partial-scans t)
-(setq reftex-save-parse-info t)
-(setq reftex-use-multiple-selection-buffers t)
-(setq reftex-plug-into-AUCTeX t)
-
-'(reftex-cite-format
-  (quote
-   ((13 . "\\cite[]{%l}")
-    (99 . "\\textcite{%l}")
-    (97 . "\\autocite[]{%l}")
-    (79 . "\\parencite{%l}")
-    (102 . "\\footcite[][]{%l}")
-    (70 . "\\fullcite[]{%l}")
-    (80 . "[@%l]")
-    (84 . "@%l [p. ]")
-    (120 . "[]{%l}")
-    (88 . "{%l}")
-    (112 . "\\citep{%l}")
-    (116 . "\\citet{%l}")
-    (121 . "\\citeyearpar{%l}"))))
-
-(eval-after-load "tex"
-  '(add-to-list 'TeX-command-list '("Biber" "biber %s" TeX-run-Biber nil t :help "Run Biber")))
-
-(eval-after-load "tex"
-  '(add-to-list 'TeX-command-list '("latexmk" "latexmk -synctex=1 -shell-escape -pdf %s" TeX-run-TeX nil t :help "Process file with latexmk")))
-
-  ;;(eval-after-load "tex"
-   ;; '(add-to-list 'Tex-command-list '("xelatex" "xelatex -synctex=1 -shell-escape -pdf %s" Tex-run-Tex nil t :help "Process file with xelatex")))
-
-;; Guide-key and Guide-Key-Tip
-(add-to-list 'load-path "~/.emacs.d/el-get/guide-key")
-(add-to-list 'load-path "~/.emacs.d/el-get/guide-key-tip")
-(require 'guide-key)
-(require 'guide-key-tip)
-(setq guide-key/guide-key-sequence t)
-(setq guide-key/idle-delay 0.7)
-(setq guide-key-tip/enabled t)
-(guide-key-mode 1)
-
-
-
-
-;;; Provides 'Prelude-Config.el'
+;;; (provides prelude-config.el) ; TODO: Put a use-package call into
+;;; init.el so i can get flymake to shut the fuck up.
+;;; prelude-config ends here

@@ -1,7 +1,7 @@
 ;;;; Provides ORG-SETUP.EL for DGN-MBP
 
 (add-to-list 'load-path "~/.emacs.d/el-get/")
-(add-to-list 'load-path "~/emacs.d/elisp/sandbox/")
+(add-to-list 'load-path "~/emacs.d/elisp/externals/")
 (require 'org-ac)
 (require 'org-bullets)
 
