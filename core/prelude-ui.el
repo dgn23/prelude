@@ -39,10 +39,10 @@
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
 
-(menu-bar-mode -1)
+;; (menu-bar-mode -1)
 
 ;; the blinking cursor is nothing, but an annoyance
-(blink-cursor-mode -1)
+;; (blink-cursor-mode -1)
 
 ;; disable startup screen
 (setq inhibit-startup-screen t)
@@ -68,8 +68,8 @@
                                           "%b"))))
 
 ;; use zenburn as the default theme
-(when prelude-theme
-  (load-theme prelude-theme t))
+;; (when prelude-theme
+;;   (load-theme prelude-theme t))
 
 (provide 'prelude-ui)
 ;;; prelude-ui.el ends here

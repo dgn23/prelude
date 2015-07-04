@@ -1,0 +1,222 @@
+#+AUTHOR: Dustin Neuman
+#+DATE: <2015-07-01 Wed>
+#+TITLE: cask-difference
+#+DESCRIPTION: Names of packages p in {ELPA / CASK} for normalizing my cask file
+
+* TODO Add following to cask file
+
+async
+... This isn't the emacs way. What do I want? I want to compare the two lists, essentially,
+and tabulate the difference, throwing away the commonalities (though, if those are nec.
+involved, may as well have them in a separate output list).There's surely some very
+simple way to do this...
+
+*UPDATE*: I found that function. It's =dired-compare-dir=. And it prompts you for a lisp
+filtering expression. I guess I should read the manual, huh? Ponderous tome that it is.
+
+ac-haskell-process-20150423.702
+ac-php-20150617.31
+ace-link-20150526.403
+ace-window-20150520.1014
+achievements-20150530.1126
+achievements-readme.txt
+ack-1.3
+ada-mode-readme.txt
+anaconda-mode-20150313.655
+annotate-20150615.959
+ansi-20141009.112
+aproject-readme.txt
+auctex-11.88.6.signed
+auto-async-byte-compile-20140212.2212
+auto-async-byte-compile-readme.txt
+auto-compile-20150511.1017
+auto-complete-20150615.34
+auto-package-update-20150516.757
+autobookmarks-20150613.1512
+avy-20150615.1048
+avy-zap-readme.txt
+bash-completion-20150514.728
+bbdb-handy-20150616.17
+bbdb-handy-readme.txt
+bbdb-readme.txt
+bbyac-20150316.301
+bbyac-readme.txt
+beginend-20150607.1001
+bookmark+-20150617.1420
+bpe-readme.txt
+browse-at-remote-20150616.1311
+bug-hunter-0.2
+cask-package-toolset-20150612.1248
+cask-readme.txt
+caskxy-readme.txt
+cd-compile-20141108.1157
+cider-20150617.753
+clippy-20140417.414
+clippy-readme.txt
+clojure-mode-20150614.1628
+color-theme-cobalt-0.0.2
+color-theme-solarized-20150521.2134
+commander-20140120.1052
+common-lisp-snippets-readme.txt
+company-20150617.1350
+company-anaconda-20150525.215
+company-auctex-20150403.938
+company-go-20150109.2051
+company-statistics-0.1.1
+company-web-20150615.345
+corral-readme.txt
+counsel-20150617.101
+ctable-20140304.1659
+ctags-20110911.304
+ctags-update-20150427.2014
+date-field-20141128.1705
+deft-20150605.2322
+dict-tree-readme.txt
+dictionary-readme.txt
+dired+-20150607.145
+dired-ranger-readme.txt
+discover-my-major-20140510.1007
+djvu-0.5 dom-readme.txt
+doremi-readme.txt
+drupal-mode-readme.txt
+e2wm-bookmark-readme.txt
+easy-kill-20141001.847
+ediprolog-readme.txt
+eh-gnus-0.0.6
+eimp-20140630.1447
+el-get-20150409.1626
+el-init-viewer-20150303.28
+el-x-readme.txt
+elisp-slime-nav-20141224.854
+elm-mode-readme.txt
+elnode-readme.txt
+elscreen-mew-readme.txt
+elscreen-readme.txt
+emacs-fontawesome-20150613.631
+emacsql-readme.txt
+env-var-import-2.1
+esup-readme.txt
+etable-readme.txt
+etags-table-readme.txt
+eval-in-repl-readme.txt
+evil-20150511.146
+evil-cleverparens-20150506.2349
+evil-easymotion-20150612.922
+evil-jumper-20150501.737
+evil-org-readme.txt
+evil-paredit-20150413.1348
+evil-search-highlight-persist-20150216.154
+evil-smartparens-20150609.224
+evil-space-20150617.534
+evil-visualstar-20150514.1410
+eyebrowse-readme.txt
+fabric-readme.txt
+face-remap+-readme.txt
+facemenu+-readme.txt
+fic-ext-mode-0.1
+files+-readme.txt
+fiplr-20140723.2345 fish-mode-20150516.2351
+fix-word-20150608.207 fixme-mode-1.0.2 flx-20140921.739
+flx-ido-20140821.2033 flycheck-20150612.235
+flycheck-clojure-20150116.234 flycheck-haskell-20150602.28
+flymake-easy-20140818.55 flymake-haskell-multi-20130620.422
+flymake-ruby-20121104.1059 fold-this-20150601.342
+fontawesome-readme.txt framesize-20131017.1432 free-keys-20140309.1051
+free-keys-readme.txt fringe-current-line-readme.txt
+fringe-helper-20140620.1409 geiser-20150517.1714 ggtags-20150611.1609
+ggtags-readme.txt git-dwim-20130130.2150 git-dwim-readme.txt
+git-gutter+-20150604.537 git-gutter-20150501.756
+git-gutter-fringe+-20140729.403 git-gutter-fringe+-readme.txt
+git-gutter-fringe-20150331.2139 git-gutter-fringe-readme.txt
+git-link-20150605.2001 git-messenger-readme.txt
+git-timemachine-20150513.1457 gitconfig-mode-20150405.1627
+gitignore-mode-20150405.1627 gitlab-readme.txt
+gmail-message-mode-readme.txt gnorb-1.1.1 gnorb-readme.txt
+gnus-alias-readme.txt gnus-desktop-notify-readme.txt gnusnotes-0.91
+go-eldoc-20150609.2138 go-mode-20150503.258
+go-projectile-20141117.1712 god-mode-20150401.1027
+google-contacts-20140530.233 google-contacts-readme.txt
+gotest-20150116.223 grep+-20150104.2210 grr-1.0.0 gtags-3.3
+haskell-emacs-20150525.550 haskell-mode-20150611.2343
+helm-20150617.2144 helm-ag-20150616.1645 helm-ag-r-20131123.731
+helm-cmd-t-readme.txt helm-dash-20150615.319
+helm-flymake-20130716.2244 helm-flyspell-readme.txt
+helm-gtags-20150617.1931 helm-helm-commands-20130902.1048
+helm-ls-git-20150613.2354 helm-make-20150511.53
+helm-open-github-readme.txt helm-package-20140108.2223
+helm-project-persist-readme.txt helm-projectile-20150610.253
+helm-rb-20131123.839 helm-rb-readme.txt
+helm-rubygems-local-20130711.1811 helm-rubygems-org-20140826.456
+helm-spaces-readme.txt highlight-20150405.2145
+highlight-indentation-20150307.208 highlight-indentation-readme.txt
+highlight-numbers-readme.txt highlight-symbol-readme.txt
+highline-7.2.2 hl-anything-20150219.531 hl-anything-readme.txt
+howdoi-20150203.1643 hydra-20150519.1346 ical-pull-0.0.3
+icicles-20150617.1425 icomplete+-20150104.2346
+idle-require-20090715.1503 ido-at-point-readme.txt ido-better-flex-0.2
+ido-completing-read+-20150528.2322 ido-hacks-20150331.1209
+ido-ubiquitous-20150528.2322 ido-vertical-mode-20150418.944
+imenu-list-20150609.826 imenus-20150107.939
+impatient-mode-20150501.247 init-loader-readme.txt initchart-0.1.1
+initsplit-readme.txt interaction-log-20150603.1010
+isearch+-20150526.2209 jade-mode-20150402.2053 jekyll-modes-readme.txt
+jinja2-mode-readme.txt jira-markup-mode-readme.txt jist-20150415.2103
+jist-readme.txt journal-1.2.1 js2-mode-20150524.426
+json-mode-20150413.1948 json-reformat-20150406.1705
+json-rpc-20140602.806 json-snatcher-20150511.2047
+key-chord-20140929.2246 keyfreq-20141124.805 keymap-utils-readme.txt
+kv-readme.txt langtool-20150609.2131 launchctl-readme.txt
+ledger-mode-20150604.722 ledger-mode-readme.txt leerzeichen-readme.txt
+load-relative-20150224.1722 loc-changes-20150302.848
+lusty-explorer-20150508.1557 lusty-explorer-readme.txt mactag-0.0.1
+magic-latex-buffer-20150608.712 maildir-0.0.28 makey-20131231.630
+markdown-mode-20150606.2129 message-templ-0.1.20141026
+mode-icons-readme.txt modeline-posn-20150228.1813
+modeline-posn-readme.txt mongo-20150315.519 move-line-0.0.1
+my-packages-0.1.0 names-20150617.359 notmuch-20150612.2316
+ob-http-20150204.517 ob-http-readme.txt ob-ipython-20150613.135
+ob-sml-20130829.1143 offlineimap-20130331.741 omni-tags-20150513.1053
+on-screen-20150603.927 operate-on-number-20140522.430 org-20150608
+org-beautify-theme-20150106.956 org-blog-1.18.1.1
+org-cua-dwim-20120202.2134 org-elisp-help-20130423.1545
+org-email-3.0.1 org-fstree-20090723.819 org-gcal-20150411.1511
+org-jira-20150528.132 org-journal-20150508.37
+org-mobile-sync-20131118.1116 org-multiple-keymap-20150328.1806
+org-pomodoro-20150610.105 org-presie-0.0.5 org-projectile-20150615.530
+org-publish-agenda-1.7 org-table-comment-20120209.1051
+org-toodledo-20150301.313 org-transform-tree-table-20150110.633
+org-trello-20150524.428 org2jekyll-20150515.1407
+orgtbl-ascii-plot-20150125.1429 orgtbl-join-20150121.1446
+orgtbl-show-header-20141023.137 osx-dictionary-readme.txt
+osx-lib-20150516.1425 ox-impress-js-20150412.1016
+ox-pandoc-20150617.2004 pallet-readme.txt pandoc-mode-20150616.639
+paxedit-20150405.1608 pcmpl-git-20140218.1804 pdf-tools-20150613.414
+php-mode-20150602.2318 plantuml-mode-20131031.1632 polymode-readme.txt
+popup-20150609.2145 powerline-20150602.1413 pretty-mode-plus-1.2
+pretty-sha-path-20141105.1026 projectile-20150610.2247
+python-django-20150525.1251 python-mode-20150520.353
+pyvenv-20150503.941 queue-0.1.1.signed rainbow-mode-0.11.signed
+real-auto-save-20150512.252 realgud-20150605.234 register-list-0.1
+relative-line-numbers-20141018.1252 repeatable-motion-20150511.1853
+rtags-readme.txt ruby-tools-20140113.45 shadchen-20141102.1039
+simple-httpd-20150430.1755 skeletor-20150228.1557 skeletor-readme.txt
+slime-20150614.1439 sly-20150514.2337 smartparens-20150603.948
+smarty-mode-20100703.458 smotitah-20150218.230
+solarized-theme-20150424.53 sqlite-readme.txt
+standoff-mode-20150613.342 swap-buffers-20150506.1439
+swiper-20150616.708 swiper-helm-readme.txt tablist-20150602.827
+template-0.1.0 test-simple-20150331.302 theme-changer-20130725.1919
+use-package-20150611.1903 vcard-0.1 volatile-highlights-20141004.2240
+wanderlust-20150526.1032 wc-mode-readme.txt
+web-completion-data-20150504.1130 websocket-readme.txt
+with-editor-readme.txt worf-readme.txt xah-elisp-mode-readme.txt
+xah-find-20150601.444 xah-find-readme.txt xah-get-thing-readme.txt
+xah-lookup-readme.txt
+xah-math-input-20150529.1812
+xah-math-input-readme.txt
+xcscope-20140510.1437
+yari-20140206.611
+zop-to-char-20150328.224
+ztree-readme.txt
+
+* TODO Evaluate what really needs to be in the cask file

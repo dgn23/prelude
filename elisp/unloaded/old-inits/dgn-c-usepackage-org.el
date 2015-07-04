@@ -1,9 +1,51 @@
-;;;; Provides ORG-SETUP.EL for DGN-MBP
+;;;; DGN-ORG.EL --- Org-Mode Setup for DGN-MBP
+;;; Commentary:
+;;; Code:
 
-(add-to-list 'load-path "~/.emacs.d/el-get/")
-(add-to-list 'load-path "~/emacs.d/elisp/externals/")
-(require 'org-ac)
-(require 'org-bullets)
+;;; Bootstrap org-mode + contrib
+(unless (package-installed-p 'org)  ;; Make sure the Org package is
+  (package-install 'org))           ;; installed, install it if not
+
+(require 'use-package)
+
+(use-package org
+  :ensure t
+  :defer t
+  :mode ("\\.org" . org-mode)
+  :bind (("C-c l" . org-store-link)
+         ("C-c a" . org-agenda)
+         ("C-c c" . org-capture)))
+
+(use-package org-bullets
+  :ensure t
+  :defer t
+  :config (progn (eval-after-load "*.org" (org-bullets-mode t))))
+
+(use-package org-ac
+  :ensure t
+  :defer t
+  :config (progn (eval-after-load "*.org" (org-ac/setup-current-buffer))))
+
+(use-package org-extension
+  :load-path "~/.emacs.d/elisp/externals/org-extension.el"
+  :defer t)
+
+(use-package org-import-icalendar
+  :load-path "~/.emacs.d/elisp/externals/org-import-calendar.el"
+  :defer t
+  :init (setq org-important-icalendar-filename "~/org/agenda/ical.org"))
+
+(use-package org-notmuch
+  :load-path "~/.emacs.d/elisp/externals/org-notmuch.el"
+  :defer t)
+
+(use-package org-index
+  :load-path "~/.emacs.d/elisp/externals/org-index.el"
+  :defer t)
+
+(use-package org-wikinodes
+  :load-path "~/.emacs.d/elisp/externals/org-wikinodes.el"
+  :defer t)
 
 (defun my/org-mode-hook ()
   (interactive)
@@ -11,15 +53,10 @@
   (turn-on-flyspell)
   (turn-on-reftex)
   (turn-on-cdlatex)
-  (yas-minor-mode-on)
   (when (fboundp 'my/enable-abbrev-mode)
     (my/enable-abbrev-mode)))
 
-
-(use-package org
-  :bind (("C-c l" . org-store-link)
-         ("C-c a" . org-agenda)
-         ("C-c c" . org-capture)))
+(setq org-directory "~/org")
 
 ;; quick access to common tags
 (setq org-tag-alist
@@ -31,6 +68,7 @@
         ("dev" . ?d)
         ("export" . ?e)
         ("noexport" . ?n)))
+
 ;; capture templates
 (setq org-capture-templates
       (quote
@@ -38,9 +76,11 @@
          "* TODO %?\n%U\n")
         ("n" "Notes" entry (file+headline "~/org/notes/notes.org" "Notes")
          "* %? :NOTE:\n%U\n")
+        (("c" "Code" entry (file+headline "~/org/notes/code.org" "Code")
+          "* %^{SNIPPET}\n #+begin_src  %? \n #+end"))
         ("j" "Journal" entry (file+datetree "~/org/agenda/journal.org")
          "* %?\n%U\n")
-        ("b" "Book/Bibliography" entry
+        ("b" "Book/Article" entry
          (file+headline "~/org/notes/bibliography.org" "Refile")
          "* %?%^{TITLE}p%^{AUTHOR}p%^{TYPE}p"))))
 
@@ -118,10 +158,11 @@
 
 
 ;; Set to the location of your Org files on your local system
-(setq org-directory "~/org")
+
 ;; Set to <your Dropbox root directory>/MobileOrg.
-(setq org-mobile-directory "~/Dropbox/MobileOrg")
+;; (setq org-mobile-directory "~/Dropbox/MobileOrg")
 ;; Set to the files (or directory of files) you want sync'd
-(setq org-agenda-files (quote ("~/org/agenda/agenda.org")))
+;; (setq org-agenda-files (quote ("~/org/agenda/agenda.org")))
 ;; Set to the name of the file where new notes will be stored
-(setq org-mobile-inbox-for-pull "~/Dropbox/org/from-mobile.org")
+;; (setq org-mobile-inbox-for-pull "~/Dropbox/org/from-mobile.org")
+;; Set to the location of your Org files on your local system

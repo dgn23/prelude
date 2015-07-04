@@ -1,0 +1,39 @@
+#+AUTHOR: Dustin Neuman
+#+DATE: <2015-07-01 Wed>
+#+TITLE: customize-export
+#+DESCRIPTION: Notes and source code for offloading settings from custom.el
+
+* Bibtex and Latex Settings
+ '(BibLaTeX-style-extensions (quote ("bbx" "cbx" "lbx")) nil nil) ; Removed comment to self, but keep eye on this
+
+(setq LaTeX-math-list (quote
+    ((98 "Box" "Logic" nil)
+     (100 "Diamond" "Logic" nil)
+     (97 "forall" "Logic" 2200)
+     (101 "exists" "Logic" 2203))) nil nil)
+
+(setq LaTeX-math-menu-unicode t)
+
+ '(LaTeX-mode-hook
+   (quote
+    (flyspell-mode company-auctex-init turn-on-reftex latex-unicode-simplified
+                   (lambda nil
+                     (run-hooks
+                      (quote prelude-latex-mode-hook)))
+                   er/add-latex-mode-expansions LaTeX-preview-setup latex-extra-mode)))
+
+Perhaps it would be easier/better to start by pulling out all of the one-liner 'setq's first and to try and incorporate them into the relevant use-package calls? Then at least whatever's left in custom will be the more complex stuff and I can take my time a bit more with it? Let's shoot for putting the one-liners down below
+
+* One Liners
+
+ '(LaTeX-math-menu-unicode t)
+
+ '(ac-auto-show-menu t)
+ '(ac-auto-start 3)
+ '(ac-candidate-limit 12)
+ '(ac-delay 0.5) 
+'(ac-expand-on-auto-complete nil)
+ '(ac-stop-words nil)
+ '(ac-trigger-key "M-TAB")
+ '(ac-use-fuzzy nil)
+ '(ac-use-menu-map t)
