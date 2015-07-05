@@ -19,7 +19,7 @@
 
 (setq global-font-lock-mode t)
 
-;;;; Background Color -- TODO make interactive
+;;;; Background Color -- TODO make interactive (DONE! - dgn-light/dark)
 
 (defvar dgn/background 'dark)
 ;; (defvar dgn/background 'light)
@@ -44,9 +44,8 @@
 (defun dgn/add-watchwords ()
   "Highlight NTS, NOTE, TODO, and CITE in code"
   (font-lock-add-keywords
-   nil '(("\\<\\(NTS\\|NOTE\\|TODO\\|CITE|\\)\\>"
-        1 '((:foreground "#D33682") (:weight bold)) t))))
-;; NOTE: REMOVED ! FROM CITE AND ADDED PIPE | AT ENDd
+   nil '(("\\<\\(NTS\\|NOTE\\|TODO\\|CITE\\)\\>"
+        1 '((:foreground "#D33682") (:weight bold)) t)))) ;why no love for cite?
 
 (defun dgn/turn-on-hl-line-mode ()
   "Turn on hl-line-mode"  (interactive)
@@ -67,66 +66,125 @@
 	:init (progn (setq sml/theme dgn/background
 					   sml/name-width 20)
 				 (sml/setup)))
-;;; Amit's Mode Line Setup
+;;; MODELINE (adapted from emacs-fu)
 
 (setq-default
-  mode-line-format
-    '(; Position, including warning for +80 column
-      (:propertize "%4l:" face mode-line-position-face)
-      (:eval (propertize "%3c" 'face
-             (if (>= (current-column) 80)
-                'mode-line-80col-face
-                'mode-line-position-face)))
-      ;; emacsclient [default -- keep?]
-      mode-line-client
-      " "
-      ;; read-only or modified status
-      (:eval
-        (cond (buffer-read-only
-              (propertize " RO " 'face 'mode-line-read-only-face))
-        ((buffer-modified-p)
-       (propertize " ** " 'face 'mode-line-modified-face))
-        (t " ")))
-      " "
-      ;; directory and buffer/file name
-      (:propertize (:eval (shorten-directory default-directory 30))
-                   face mode-line-folder-face
-      (:propertize "%b"
-                   face mode-line-filename-face)
-      ;; narrow [default -- keep?]
-      ;; " %n "
-      ;; mode indicators: vc, recursive edit, major mode, minor modes, process, global
-      (vc-mode vc-mode)
-      " %["
-      (:propertize mode-name face mode-line-mode-face)
-      "%] "
-      (:eval (propertize (format-mode-line minor-mode-alist)
-                         'face 'mode-line-minor-mode-face))
-      (:propertize mode-line-process-face
-                   face mode-line-process-face)
-      " "
-      ;; mode-line-misc-info is better than Amit's version
-      mode-line-misc-info
-      " "
-      ;; nyan-mode used nyan cat as an alternative to %p
-      (:eval (when nyan-mode (list (nyan-create))))
-      )))
+ mode-line-format
+  (list
+    ;; the buffer name; the file name as a tool tip
+    '(:eval (propertize " %b " 'face 'font-lock-keyword-face
+        'help-echo (buffer-file-name)))
 
-    ;; Helper function
-    (defun shorten-directory (dir-max-length)
-      "Show up to `max-length' characters of a directory name `dir'."
-      (let ((path (reverse (split-string (abbreviate-file-name dir) "/")))
-            (output ""))
-        (when (and path (equal " " (car path)))
-          (setq path (cdr path)))
-        (while (and path (< (length output) (- max-length 4)))
-          (setq output (concat (car path) "/" output))
-          (setq path (cdr path)))
-        (when path
-          (setq output (concat ".../" output)))
-        output))
+    ;; line and column
+    "(" ;; '%02' to set to 2 chars at least; prevents flickering
+      (propertize "%02l" 'face 'font-lock-type-face) ","
+      (propertize "%02c" 'face 'font-lock-type-face)
+    ") "
 
-;; Extra mode line faces
+    ;; relative position, size of file
+    "["
+    (propertize "%p" 'face 'font-lock-constant-face) ;; % above top
+    "/"
+    (propertize "%I" 'face 'font-lock-constant-face) ;; size
+    "] "
+
+    ;; the current major mode for the buffer.
+    "["
+
+    '(:eval (propertize "%m" 'face 'font-lock-string-face
+              'help-echo buffer-file-coding-system))
+    "] "
+
+
+    "[" ;; insert vs overwrite mode, input-method in a tooltip
+    '(:eval (propertize (if overwrite-mode "Ovr" "Ins")
+              'face 'font-lock-preprocessor-face
+              'help-echo (concat "Buffer is in "
+                           (if overwrite-mode "overwrite" "insert") " mode")))
+
+    ;; was this buffer modified since the last save?
+    '(:eval (when (buffer-modified-p)
+              (concat ","  (propertize "Mod"
+                             'face 'font-lock-warning-face
+                             'help-echo "Buffer has been modified"))))
+
+    ;; is this buffer read-only?
+    '(:eval (when buffer-read-only
+              (concat ","  (propertize "RO"
+                             'face 'font-lock-type-face
+                             'help-echo "Buffer is read-only"))))
+    "] "
+
+    ;; add the time, with the date and the emacs uptime in the tooltip
+    '(:eval (propertize (format-time-string "%H:%M")
+              'help-echo
+              (concat (format-time-string "%c; ")
+                      (emacs-uptime "Uptime:%hh"))))
+    " --"
+    ;; i don't want to see minor-modes; but if you want, uncomment this:
+     minor-mode-alist  ;; list of minor modes
+    "%-" ;; fill with '-'
+    ))
+
+
+;; (setq-default
+;;   mode-line-format
+;;     '(; Position, including warning for +80 column
+;;       (:propertize "%4l:" face mode-line-position-face)
+;;       (:eval (propertize "%3c" 'face
+;;              (if (>= (current-column) 80)
+;;                 'mode-line-80col-face
+;;                 'mode-line-position-face)))
+;;       ;; emacsclient [default -- keep?]
+;;       mode-line-client
+;;       " "
+;;       ;; read-only or modified status
+;;       (:eval
+;;         (cond (buffer-read-only
+;;               (propertize " RO " 'face 'mode-line-read-only-face))
+;;         ((buffer-modified-p)
+;;        (propertize " ** " 'face 'mode-line-modified-face))
+;;         (t " ")))
+;;       " "
+;;       ;; directory and buffer/file name
+;;       (:propertize (:eval (shorten-directory default-directory 30))
+;;                    face mode-line-folder-face
+;;       (:propertize "%b"
+;;                    face mode-line-filename-face)
+;;       ;; narrow [default -- keep?]
+;;       ;; " %n "
+;;       ;; mode indicators: vc, recursive edit, major mode, minor modes, process, global
+;;       (vc-mode vc-mode)
+;;       " %["
+;;       (:propertize mode-name face mode-line-mode-face)
+;;       "%] "
+;;       (:eval (propertize (format-mode-line minor-mode-alist)
+;;                          'face 'mode-line-minor-mode-face))
+;;       (:propertize mode-line-process-face
+;;                    face mode-line-process-face)
+;;       " "
+;;       ;; mode-line-misc-info is better than Amit's version
+;;       mode-line-misc-info
+;;       " "
+;;       ;; nyan-mode used nyan cat as an alternative to %p
+;;       (:eval (when nyan-mode (list (nyan-create))))
+;;       )))
+
+;;     ;; Helper function
+;;     (defun shorten-directory (dir-max-length)
+;;       "Show up to `max-length' characters of a directory name `dir'."
+;;       (let ((path (reverse (split-string (abbreviate-file-name dir) "/")))
+;;             (output ""))
+;;         (when (and path (equal " " (car path)))
+;;           (setq path (cdr path)))
+;;         (while (and path (< (length output) (- max-length 4)))
+;;           (setq output (concat (car path) "/" output))
+;;           (setq path (cdr path)))
+;;         (when path
+;;           (setq output (concat ".../" output)))
+;;         output))
+
+;; ;; Extra mode line faces
 (make-face 'mode-line-read-only-face)
 (make-face 'mode-line-modified-face)
 (make-face 'mode-line-folder-face)
