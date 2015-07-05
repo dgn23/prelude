@@ -42,14 +42,14 @@
   (dgn-light))
 
 (defun dgn/add-watchwords ()
-  "Highlight NTS, NOTE, TODO, and CITE! in code"
+  "Highlight NTS, NOTE, TODO, and CITE in code"
   (font-lock-add-keywords
-   nil '(("\\<\\(NTS\\|NOTE\\|TODO\\|CITE!\\)\\>"
-          1 '((:foreground "#D33682") (:weight bold)) t))))
+   nil '(("\\<\\(NTS\\|NOTE\\|TODO\\|CITE|\\)\\>"
+        1 '((:foreground "#D33682") (:weight bold)) t))))
+;; NOTE: REMOVED ! FROM CITE AND ADDED PIPE | AT ENDd
 
 (defun dgn/turn-on-hl-line-mode ()
-  "Turn on hl-line-mode"
-  (interactive)
+  "Turn on hl-line-mode"  (interactive)
   (hl-line-mode 1))
 
 (add-hook 'prog-mode-hook #'dgn/add-watchwords)

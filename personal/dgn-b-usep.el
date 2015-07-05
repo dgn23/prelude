@@ -143,9 +143,8 @@
 
 ;;    ispell
 (use-package ispell
-  :init (progn (setq ispell-program-name "/usr/local/Cellar/aspell/" )
-               (setq ispell-personal-dictionary "~/.aspell.en.pws")
-               (setq ispell-local-dictionary "~/dicts/LocalDictionary")))
+  :init (progn (setq ispell-program-name "aspell" )
+               (setq ispell-personal-dictionary "~/.aspell.en.pws")))
 
 ;;    indent guide
 (use-package indent-guide
@@ -173,11 +172,11 @@
   :ensure solarized-theme
   :init (load-theme 'solarized-dark 'no-confirm))
 
-;;    folding
-(use-package folding
-  :diminish folding-mode
-  :config (progn (setq folding-mode-prefix-key (kbd "C-:") folding-folding-on-startup nil folding-internal-margins nil)
-          (folding-install) (folding-install-hooks) (add-hook 'after-revert-hook 'folding-mode-find-file t)))
+;; ;;    folding
+;; (use-package folding
+;;   :diminish folding-mode
+;;   :config (progn (setq folding-mode-prefix-key (kbd "C-:") folding-folding-on-startup nil folding-internal-margins nil)
+;;           (folding-install) (folding-install-hooks) (add-hook 'after-revert-hook 'folding-mode-find-file t)))
 
 ;;    deft
 (use-package deft
@@ -252,19 +251,7 @@
           ("S-<down>"  . windmove-down)))
 
 ;; M-x is helm, M-X smex
-(use-package smex
-:defer t
-:init (global-set-key (kbd "M-X") 'smex)
-:config((defadvice smex (around space-inserts-hyphen activate compile)
-  "Insert a hyphen when using space. This mimics default M-x
-  behaviour."
-  (let ((ido-cannot-complete-command
-         `(lambda ()
-            (interactive)
-            (if (string= " " (this-command-keys))
-                (insert ?-)
-              (funcall ,ido-cannot-complete-command)))))
-    ad-do-it))))
+(use-package smex                 :defer t :init (global-set-key (kbd "M-X") 'smex))
 
 (use-package helm-flyspell        :ensure helm :bind ("C-;" . helm-flyspell-correct))
 (use-package helm-descbinds       :ensure helm :config (helm-descbinds-mode))
