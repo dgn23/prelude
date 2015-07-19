@@ -1,69 +1,8 @@
-;; gnus/mail from custom to integrate
-'(gnus-asynchronous t)
- '(gnus-bookmark-default-file "~/.emacs.d/gnus/bookmarks.el")
- '(gnus-default-charset (quote UTF-8))
- '(gnus-directory "~/.emacs.d/gnus/")
- '(gnus-icalendar-additional-identities
-   (quote
-    ("Dustin Neuman" "dustin.neuman@gmail.com" "dneuman@berkeley.edu" "dustin@dustinneuman.com")))
- '(gnus-icalendar-org-capture-file "\"~/org/agenda/ical.org\"")
-
-
-(setq user-mail-address "dustin.neuman@gmail.com")
-(setq user-full-name "Dustin Neuman")
-(load-library "smtpmail")
-(load-library "nnimap")
-(load-library "starttls")
-(require 'nnir)
-
-(setq gnus-select-method '(nnimap "imap.gmail.com"
-	       (nnimap-address "imap.gmail.com")
-	       (nnimap-server-port 993)
-	       (nnimap-authinfo-file "~/.authinfo")
-	       (nnir-search-engine imap)
-	       (nnimap-stream ssl)
-	       ))
-
-(setq gnus-secondary-select-methods
-      '(
-	(nnimap "mail.dustinneuman.com"
-      	       (nnimap-address "mail.dustinneuman.com")
-      	       (nnimap-server-port 993)
-      	       (nnimap-authinfo-file "~/.authinfo")
-      	       (nnir-search-engine imap)
-      	       (nnimap-stream ssl))))
-
-(setq smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
-      smtpmail-smtp-server "smtp.gmail.com"
-      smtpmail-default-smtp-server "smtp.gmail.com"
-      send-mail-function 'smtpmail-send-it
-      message-send-mail-function 'smtpmail-send-it
-      smtpmail-smtp-service 587)
-
-(add-hook 'gnus-topic-mode-hook 'gnus-topic-mode)
-
-(setq gnus-outgoing-message-group "[Google Mail]/Sent Mail")
-(setq gnus-extract-address-components
-           'mail-extract-address-components)
-
-(require 'bbdb)
-(bbdb-initialize)
-(add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
-(add-hook 'gnus-startup-hook 'bbdb-insinuate-message)
-
-
-;; (setq gnus-invalid-group-regexp "[:`'\"]\\|^$")
-(setq gnus-ignored-newsgroups  "")
-(setq gnus-outgoing-message-group "[Google Mail]/Sent Mail") ; [Gmail]/... ?? TODO
-
-(setq gnus-summary-mark-below 0)
-
-;;; My ~/.gnus.el as it stands now
-
 ;; GNUS.EL FOR DREAMHOST EMAIL
 ;; TODO -- organize this bad boy a lot better. Especially split up dn.com/gmail
 
 
+;;; Code:
 ;;;;;;;;;;;;;;;;;;;; GENERIC SETTINGS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq user-full-name "Dustin Neuman")
@@ -90,7 +29,7 @@
 
     (setq message-send-mail-function 'smtpmail-send-it
                 smtpmail-smtp-server "mail.dustinneuman.com"
-                smtpmail-default-smtp-server "mail.dustinneuman.com"
+                smtpmail-default-smtp-server "smtp.dustinneuman.com" ;changed mail.dustinneuman.com to smtp
                 smtpmail-smtp-service 587
                 smtpmail-starttls-credentials '(("mail.dustinneuman.com" 587 nil nil))
                 smtpmail-auth-credentials '(("mail.dustinneuman.com" 587 "dustin@dustinneuman.com" nil))
@@ -127,10 +66,20 @@
 ;;;;;;;;;;;;;;;;;; EXPERIMENTAL SETTINGS BELOW ;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;; GMAIL ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq gnus-secondary-select-method '(nnimap "imap.gmail.com"
+(setq gnus-secondary-select-method
+      '(nnimap "gmail"
+               (nnimap-address "imap.gmail.com") ; possibly "...googlemail"
+               (nnimap-server-port "imaps")
+               (nnimap-stream-ssl)))
+
+(setq smtpmail-smtp-service 587)
+;(setq gnus-ignored-newsgroups "^to\.\|^[0-9.]+\(\\|$\)\|^[""[#'()")
+
+(setq gnus-secondary-select-method
+      '(nnimap "imap.gmail.com"
          (nnimap-address "imap.gmail.com")
          (nnimap-server-port 993)
-         (nnimap-authinfo-file "~/.authinfo")
+         (nnimap-authinfo-file "$HOME/.authinfo")
          (nnir-search-engine imap)
          (nnimap-stream ssl)
          ))
@@ -144,12 +93,12 @@
 
 (add-hook 'gnus-topic-mode-hook 'gnus-topic-mode)
 
-(setq gnus-outgoing-message-group "[Google Mail]/Sent Mail")
+(setq gnus-outgoing-message-group "[Gmail]/Sent Mail") ;changed "Google Mail" to "Gmail"
 (setq gnus-extract-address-components
            'mail-extract-address-components)
 
 ;;;;;;;;;;;;;;;;;;;; BBDB &c. ;;;;;;;;;;;;;;;;;;;;;;;;
-
+;(add-to-list 'load-path "/home/dgn/.emacs.d/el-get/bbdb")
 (require 'bbdb)
 (bbdb-initialize)
 (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
@@ -165,25 +114,25 @@
 
 ;; (setq gnus-invalid-group-regexp "[:`'\"]\\|^$")
 (setq gnus-ignored-newsgroups  "")
-(setq gnus-outgoing-message-group "[Google Mail]/Sent Mail")
+(setq gnus-outgoing-message-group "[Gmail]/Sent Mail")
 (setq gnus-summary-mark-below 0)
-(setq gnus-visible-headers 
+(setq gnus-visible-headers
       '(
-  "^Cc:" 
-  "^Date:" 
-  "^Followup-To:" 
-  "^From:" 
-  "^Keywords:" 
-  "^Newsgroups:" 
+  "^Cc:"
+  "^Date:"
+  "^Followup-To:"
+  "^From:"
+  "^Keywords:"
+  "^Newsgroups:"
   "^Mailing-List:"
-  "^Organization:" 
-  "^Posted-To:" 
-  "^Reply-To:" 
-  "^Subject:" 
-  "^Summary:" 
-  "^To:" 
+  "^Organization:"
+  "^Posted-To:"
+  "^Reply-To:"
+  "^Subject:"
+  "^Summary:"
+  "^To:"
   "^X-Newsreader:"
-  "^X-Url:"
+  "^X-Url:"))
 ; "^X-" ; Show all X-headers))
 
 ;;Activate foreign newsgroups
@@ -229,41 +178,41 @@
 
 ;; These colors are used for the different citation levels
 ;(copy-face 'default 'gnus-cite-face-1)
-(set-face-foreground 'gnus-cite-face-1 "orangered1")
+;; (set-face-foreground 'gnus-cite-face-1 "orangered1")
 
-;(copy-face 'default 'gnus-cite-face-2)
-(set-face-foreground 'gnus-cite-face-2 "saddle brown")
+;; ;(copy-face 'default 'gnus-cite-face-2)
+;; (set-face-foreground 'gnus-cite-face-2 "saddle brown")
 
-;(copy-face 'default 'gnus-cite-face-3)
-(set-face-foreground 'gnus-cite-face-3 "blue")
+;; ;(copy-face 'default 'gnus-cite-face-3)
+;; (set-face-foreground 'gnus-cite-face-3 "blue")
 
-;(copy-face 'default 'gnus-cite-face-4)
-(set-face-foreground 'gnus-cite-face-4 "turquoise4")
+;; ;(copy-face 'default 'gnus-cite-face-4)
+;; (set-face-foreground 'gnus-cite-face-4 "turquoise4")
 
-;(copy-face 'default 'gnus-cite-face-5)
-(set-face-foreground 'gnus-cite-face-5 "forest green")
+;; ;(copy-face 'default 'gnus-cite-face-5)
+;; (set-face-foreground 'gnus-cite-face-5 "forest green")
 
-;(copy-face 'default 'gnus-cite-face-6)
-(set-face-foreground 'gnus-cite-face-6 "magenta4")
+;; ;(copy-face 'default 'gnus-cite-face-6)
+;; (set-face-foreground 'gnus-cite-face-6 "magenta4")
 
-;(copy-face 'default 'gnus-cite-face-7)
-(set-face-foreground 'gnus-cite-face-7 "purple1")
+;; ;(copy-face 'default 'gnus-cite-face-7)
+;; (set-face-foreground 'gnus-cite-face-7 "purple1")
 
-;(copy-face 'default 'gnus-cite-face-8)
-(set-face-foreground 'gnus-cite-face-8 "burlywood4")
+;; ;(copy-face 'default 'gnus-cite-face-8)
+;; (set-face-foreground 'gnus-cite-face-8 "burlywood4")
 
-;(copy-face 'default 'gnus-cite-face-9)
-(set-face-foreground 'gnus-cite-face-9 "burlywood4")
+;; ;(copy-face 'default 'gnus-cite-face-9)
+;; (set-face-foreground 'gnus-cite-face-9 "burlywood4")
 
-;(copy-face 'default 'gnus-cite-face-10)
-(set-face-foreground 'gnus-cite-face-10 "burlywood4")
+;; ;(copy-face 'default 'gnus-cite-face-10)
+;; (set-face-foreground 'gnus-cite-face-10 "burlywood4")
 
 ;; Faces for headers in the article buffer
 (setq gnus-header-face-alist
       '(
   ;; Format the more important headers as bold
  ("\\(from\\|to\\|sender\\|newsgroups\\|subject\\):" bold bold)
-  
+
   ;; Underline the subject
  ("subject:" bold underline)
 
@@ -279,5 +228,3 @@
 
 ;; Face for the signature
 (setq gnus-signature-face font-lock-comment-face)
-
-

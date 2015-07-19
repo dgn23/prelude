@@ -6,7 +6,7 @@
 (unless (package-installed-p 'org)  ;; Make sure the Org package is
   (package-install 'org))           ;; installed, install it if not
 
-(eval-when-compile 
+(eval-when-compile
   (require 'use-package))
 
 (use-package org
@@ -15,13 +15,41 @@
   :mode ("\\.org" . org-mode)
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
-         ("C-c c" . org-capture)))
+         ("C-c c" . org-capture))
+  :init (setq org-completion-use-ido t)
+  (setq org-babel-load-languages (quote ((emacs-lisp . t)
+                                         (latex . t)
+                                         (ditaa . t)
+                                         (dot . t)
+                                         (haskell . t)
+                                         (python . t)
+                                         (ruby . t)
+                                         (scheme . t)
+                                         (clojure . t)
+                                         (plantuml . t)
+                                         (sh . t))))
+  (setq org-datetree-add-timestamp (quote inactive))
+  (setq org-hide-emphasis-markers t)
+  (setq org-highlight-latex-and-related (quote (latex script entities)))
+  (setq org-pretty-entitites t)
+  (setq org-src-fontify-natively t)
+  (setq org-use-speed-commands t)
+ (setq org-default-notes-file "~/org/notes/notes.org")
+ (setq org-ditaa-jar-path "/usr/local/bin/ditaa")
+ (setq org-doing-file "~/org/agenda/doing.org")
+ (setq org-drawers (quote ("PROPERTIES" "CLOCK" "LOGBOOK" "RESULTS" "STUDENT_INFO")))
+ (setq org-enforce-todo-checkbox-dependencies t)
+ (setq org-enforce-todo-dependencies t)
+ (setq org-export-backends (quote (ascii beamer html icalendar latex md org)))
+ (setq org-fontify-done-headline t)
+ (setq org-fontify-quote-and-verse-blocks t)
+ (setq org-fontify-whole-heading-line t))
 
 (use-package org-bullets
   :load-path "~/.emacs.d/.cask/24.5.1/elpa/org-bullets-20140918.1137"
   :ensure t
   :defer t
-  :config (progn (eval-after-load "*.org" (org-bullets-mode t))))
+  :config (progn (eval-after-load "*.org" (org-bullets-mode))))
 
 (use-package org-ac
   :load-path "~/.emacs.d/.cask/24.5.1/elpa/org-ac-20140302.413"
@@ -80,7 +108,7 @@
         ("n" "Notes" entry (file+headline "~/org/notes/notes.org" "Notes")
          "* %? :NOTE:\n%U\n")
         (("c" "Code" entry (file+headline "~/org/notes/code.org" "Code")
-          "* %^{SNIPPET}\n #+begin_src  %? \n #+end"))
+         "*  %?\n%U\n"))
         ("j" "Journal" entry (file+datetree "~/org/agenda/journal.org")
          "* %?\n%U\n")
         ("b" "Book/Article" entry
@@ -137,7 +165,7 @@
 
 (add-hook 'org-mode-hook
           (lambda ()
-            (set-face-attribute 'org-level-1 nil :height 1.5)
+            (set-face-attribute 'org-level-1 nil :height 1.3)
            (set-face-attribute 'org-level-2 nil :height 1.2)
             (set-face-attribute 'org-level-3 nil :height 1.1)
             (set-face-attribute 'org-level-4 nil :height 1.1)
@@ -163,9 +191,9 @@
 ;; Set to the location of your Org files on your local system
 
 ;; Set to <your Dropbox root directory>/MobileOrg.
-;; (setq org-mobile-directory "~/Dropbox/MobileOrg")
+(setq org-mobile-directory "~/Dropbox/MobileOrg")
 ;; Set to the files (or directory of files) you want sync'd
 ;; (setq org-agenda-files (quote ("~/org/agenda/agenda.org")))
 ;; Set to the name of the file where new notes will be stored
-;; (setq org-mobile-inbox-for-pull "~/Dropbox/org/from-mobile.org")
+(setq org-mobile-inbox-for-pull "~/Dropbox/org/from-mobile.org")
 ;; Set to the location of your Org files on your local system

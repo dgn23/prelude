@@ -1,3 +1,13 @@
+;; The good solarized lives here
+(if (load "~/.emacs.d/elisp/solarized-emacs/solarized")
+    (load "~/.emacs.d/elisp/solarized-emacs/solarized-theme")
+  and (load "~/.emacs.d/elisp/solarized-emacs/solarized-dark-theme"))
+(use-package with-editor
+  :init
+  (progn
+    (add-hook 'shell-mode-hook 'with-editor-export-editor)
+    (add-hook 'eshell-mode-hook 'with-editor-export-editor)))
+
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)   ; with AUCTeX LaTeX mode
 (add-hook 'pandoc-mode-hook 'turn-on-reftex)  ; with Pandoc mode
 (autoload 'reftex-mode     "reftex" "RefTeX Minor Mode" t)

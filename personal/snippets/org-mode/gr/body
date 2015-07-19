@@ -1,0 +1,11 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: gr/body
+# key: gr/b
+# binding: direct-keybinding
+# --
+
+${The paper/it/the author} does a ${good/bad} ${job} ${of} ${longer-sentence-compliment-or-criticism-depending-on-before} 
+In particular, ${say a little more about the last thing} For the next assignment I would suggest working on ${here is where you get the complaints out}.
+In any case, ${please feel free to come to office hours to talk about your paper. I'll make some extra time available this week.}
+
+   Grade ${}

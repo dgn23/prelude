@@ -8,6 +8,20 @@
 ;;; Code:
 
 (eval-when-compile (require 'use-package))
+;; fonts -- see about changing so as to make switching easier
+;; (or even better, set up hooks so I get mono in prog and sans in text)
+
+(defun font-existsp (font)
+
+"Check to see if the named FONT is available."
+ (if (null (x-list-fonts font)) nil t))
+ ;; Set default font. First one found is selected.
+(cond
+  ((eq window-system nil) nil)
+    ((font-existsp "Source Code Pro")
+      (set-face-attribute 'default nil :height 131 :font "Source Code Pro"))
+    ((font-existsp "Myriad Pro")
+      (set-face-attribute 'default nil :height 121 :font "Myriad Pro")))
 
 (setq ns-use-srgb-colorspace t)
 
@@ -51,24 +65,32 @@
   "Turn on hl-line-mode"  (interactive)
   (hl-line-mode 1))
 
+(add-hook 'org-mode-hook #'dgn/add-watchwords)
 (add-hook 'prog-mode-hook #'dgn/add-watchwords)
 (add-hook 'latex-mode-hook #'dgn/add-watchwords)
 (add-hook 'prog-mode-hook #'dgn/turn-on-hl-line-mode)
 (add-hook 'org-mode-hook #'dgn/turn-on-hl-line-mode)
-(add-hook 'org-mode-hook #'dgn-light)
+
+
 
 (use-package powerline
-	:disabled t
-	:init (powerline-default-theme))
+  :defer t
+	:init (powerline-default-theme)
+  :config (progn 
+            (setq powerline-arrow-shape 'curve)
+            (setq powerline-default-separator 'utf-8)
+            (setq powerline-default-separator-dir '(right . left))))
 
 (use-package smart-mode-line
 	:disabled t
 	:init (progn (setq sml/theme dgn/background
 					   sml/name-width 20)
 				 (sml/setup)))
-;;; MODELINE (adapted from emacs-fu)
 
-(setq-default
+;;; MODELINE (adapted from emacs-fu)
+(defun dgn/modeline () 
+  "Turn on custom mode-line" (interactive)
+(setq
  mode-line-format
   (list
     ;; the buffer name; the file name as a tool tip
@@ -123,8 +145,8 @@
     " --"
     ;; i don't want to see minor-modes; but if you want, uncomment this:
      minor-mode-alist  ;; list of minor modes
-    "%-" ;; fill with '-'
-    ))
+    "%+#" ;; fill with '-'
+    )))
 
 
 ;; (setq-default

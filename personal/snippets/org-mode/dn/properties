@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: dn/properties
+# key: dn-prp
+# binding: direct-keybinding
+# --
+:PROPERTIES:
+${}
+:END:

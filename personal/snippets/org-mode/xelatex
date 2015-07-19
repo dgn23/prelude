@@ -1,0 +1,76 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: orgmode-xelatex
+# key: orgmode-xelatex
+# binding: direct-keybinding
+# --
+
+#+AUTHOR:  Dustin Neuman
+#+TITLE: $1    $2
+#+DATE: $3
+#+LaTeX_CLASS: article
+#+LaTeX_CLASS_OPTIONS: [12pt,letterpaper,onesided]
+#+LATEX_HEADER: \usepackage{xunicode}
+#+LATEX_HEADER: \usepackage{unicode-math}
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \usepackage{xltxtra}
+#+LATEX_HEADER: \usepackage[margin=1.3in]{geometry}
+#+LATEX_HEADER_EXTRA: \geometry{letterpaper,margin=1.3in}
+#+LATEX_HEADER: \usepackage[hyperref.dvipsnames]{xcolor}
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage{fancybox}
+#+LATEX_HEADER: \usepackage[protrusion=true]{microtype}
+#+LATEX_HEADER: \usepackage[american]{babel}
+#+LATEX_HEADER: \usepackage{amsmath,amsfonts,amsthm,latexsym} % Math packages
+#+LATEX_HEADER: \usepackage[doublespacing]{setspace}
+#+LATEX_HEADER: \usepackage{xspace}
+#+LATEX_HEADER: \usepackage[comma,authoryear]{natbib}
+#+LATEX_HEADER: \usepackage{titling}
+#+LATEX_HEADER: \usepackage[small,sf,bf]{titlesec}
+#+LATEX_HEADER: \usepackage[bottom,flushmargin]{footmisc}
+#+LATEX_HEADER: \usepackage[hidelinks]{hyperref}
+#+LATEX_HEADER: \newcommand{\ess}{\textit{Essay}\xspace}
+#+LATEX_HEADER:  \newcommand{\qua}{\textit{qua}\xspace}
+#+LATEX_HEADER_EXTRA: \usepackage[comma,authoryear]{natbib}
+#+LATEX_HEADER_EXTRA: \usepackage[hidelinks]{hyperref}
+#+LATEX_HEADER: \bibliography{~/refs.bib}
+
+#+BEGIN_SRC latex
+\title{$1 \\ \vspace{-5pt} {\Large SUBTITLE $2}}
+\author{\href{mailto:dneuman@berkeley.edu}{Dustin Neuman}{\thanks{For Class \textsl{ CLASS-NAME} PROFESSOR NAME YEAR}}}
+\date{{\small $3}}
+
+\pretitle{\begin{flushleft}\vspace{5mm}\Huge\sffamily\upshape}
+\posttitle{\end{flushleft}}
+\preauthor{\begin{flushleft}\Large\sffamily\vspace{-8pt}}
+\postauthor{\end{flushleft}}
+\predate{\begin{flushleft}\large\sffamily\vspace{-15pt}}
+\postdate{\end{flushleft}}
+
+\setlength{\droptitle}{-90pt}
+
+% font definitions -- can go after preamble
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont[Mapping=tex-text]{Minion Pro}
+\setsansfont[Mapping=tex-text]{Myriad Pro}
+\setmonofont[Mapping=tex-text]{Source Code Pro}
+
+\begin{document}
+
+\begin{singlespacing}
+\maketitle
+\end{singlespacing}
+
+\frenchspacing
+
+#+END_SRC
+
+$7
+
+%Bibliography Goes Here
+\begin{singlespacing}
+	\renewcommand\refname{Works Cited} \label{Sec:refs}
+	\bibliographystyle{apalike}
+	\bibliography{BIB!} %Insert Bibfile Name Here (must be in file)
+\end{singlespacing}
+\end{document}
+\end{document}
