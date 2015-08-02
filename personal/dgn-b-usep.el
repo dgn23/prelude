@@ -73,9 +73,15 @@
               "/Users/dustinneuman/dicts/dict-english.word-list"))
         (add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")))
 
-;;   TODO: Integrate more ac-*.el from externals/
-;;   predictive (?)
-(use-package predictive :load-path "~/.emacs.d/elisp/predictive/" :defer 10)
+
+
+(use-package predictive
+  :load-path "~/.emacs.d/elisp/predictive"
+  :init (setq predictive-auto-learn t)
+  (setq predictive-use-buffer-local-dict t)
+  (setq predictive-fuzzy-completion t)
+  :defer 25
+  :config (predictive-mode t))
 
 ;; Company mode is pissing me off. I'm going to try to set up AC to my liking. It should have a spot here anyway.
 ;;;  company
@@ -257,8 +263,7 @@
 ;;    solarized theme
 (use-package solarized
   :load-path "~/.emacs.d/elisp/solarized-emacs/"
-  :ensure solarized-theme
-  :init (load-theme 'solarized-dark 'no-confirm))
+  :defer t)
 
 ;;    deft
 (use-package deft
@@ -315,7 +320,6 @@
 (use-package helm-descbinds       :ensure helm :config (helm-descbinds-mode))
 (use-package helm-flycheck        :ensure helm :commands helm-flycheck :init (eval-after-load 'flycheck '(bind-key "h" 'helm-flycheck flycheck-command-map)))
 (use-package helm-buffers         :ensure helm :defer t :config (setq helm-buffers-fuzzy-matching t))
-(use-package helm-flyspell        :ensure helm :bind ("C-;" . helm-flyspell-correct))
 (use-package helm-descbinds       :ensure helm :init (helm-descbinds-mode))
 (use-package helm-color           :ensure helm :bind (("C-c h c" . helm-colors)))
 (use-package helm-unicode         :ensure helm :bind ("C-c h 8" . helm-unicode))
@@ -357,8 +361,6 @@
 (use-package drag-stuff           :ensure t :config (progn (setq drag-stuff-modifier '(meta shift)) (drag-stuff-global-mode t)))
 (use-package smart-tab            :ensure t :config (progn(smart-tab-mode 1)))
 (use-package unicode-mode         :load-path "~/.emacs.d/elisp/externals" :defer t  :diminish "Uni-Mode")
-
-
 
 (use-package sunshine
   :load-path "~/.emacs.d/elisp/externals"

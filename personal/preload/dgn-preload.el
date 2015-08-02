@@ -3,9 +3,14 @@
 
 ;;; License: (for ESKH) Copyleft 2015 -- Do What Thou Wilt (Just Don't Blame Me!)
 
-;; bootstrapping
+;;; Code:
+
+;; System-wide, package-indepedent settings
 
 (setq load-prefer-newer t)
+(setq debug-on-error nil)
+(setq scroll-bar-mode nil)
+
 ;; Cask/Pallet
 
 (require 'cl)
@@ -53,16 +58,16 @@
 
 
 ;; PATH Setup
-(setenv  "PATH" (concat "/usr/local/bin:/usr/texbin:/usr/local/texlive/2015:" (getenv "PATH")))
+(setenv  "PATH" (concat "/usr/local/bin:/usr/texbin:/usr/local/texlive/2015:~/Library/Haskell/bin" (getenv "PATH")))
 (add-to-list 'after-init-hook (exec-path-from-shell-initialize))
 
 ;; Tell emacs about the proper load-path
-(add-to-list 'load-path "~/.emacs.d/.cask/24.5.1/bootstrap/")
-(add-to-list 'load-path "~/.emacs.d/.cask/24.5.1/elpa/")
-(add-to-list 'load-path "~/.emacs.d/themes/")
-(add-to-list 'load-path "~/.emacs.d/elisp/externals/")
-(add-to-list 'load-path "~/.emacs.d/predictive/")
-(add-to-list 'load-path "~/.emacs.d/elisp/solarized-emacs/")
+(add-to-list 'load-path "~/.emacs.d/.cask/24.5.1/bootstrap")
+(add-to-list 'load-path "~/.emacs.d/.cask/24.5.1/elpa")
+(add-to-list 'load-path "~/.emacs.d/themes")
+(add-to-list 'load-path "~/.emacs.d/elisp/externals")
+(add-to-list 'load-path "~/.emacs.d/predictive")
+(add-to-list 'load-path "~/.emacs.d/elisp/solarized-emacs")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized")
 
 ;; Trackpad scrolling -- Trackpad scrolling will be left in DGN-keybindings.el as well (at least

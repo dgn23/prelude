@@ -16,7 +16,68 @@
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture))
-  :init (setq org-completion-use-ido t)
+  :init (setq org-directory "~/org") (setq org-agenda-files '("~/org/agenda/agenda.org" "~/org/agenda/gtd.org"))
+  (setq org-completion-use-ido t)
+  (use-package org-bullets
+          :load-path "~/.emacs.d/.cask/24.5.1/elpa/org-bullets-20140918.1137"
+          :ensure t
+          :defer t
+          :config (progn (eval-after-load "*.org" (org-bullets-mode))))
+  (use-package org-ac
+    :load-path "~/.emacs.d/.cask/24.5.1/elpa/org-ac-20140302.413"
+    :ensure t
+    :defer t
+    :config (progn (eval-after-load "*.org" (org-ac/setup-current-buffer))))
+  (use-package org-extension
+    :load-path "~/.emacs.d/elisp/externals/org-extension.el"
+    :defer t)
+  (use-package org-import-icalendar
+    :load-path "~/.emacs.d/elisp/externals/org-import-calendar.el"
+    :defer t
+    :init (setq org-important-icalendar-filename "~/org/agenda/ical.org"))
+  (use-package org-notmuch
+    :load-path "~/.emacs.d/elisp/externals/org-notmuch.el"
+    :defer t)
+  (use-package org-index
+    :load-path "~/.emacs.d/elisp/externals/org-index.el"
+    :defer t)
+  (use-package org-wikinodes
+    :load-path "~/.emacs.d/elisp/externals/org-wikinodes.el"
+    :defer t)
+  :config (progn   (turn-on-auto-fill)
+                   (turn-on-flyspell)
+                   (turn-on-reftex)
+                   ;(turn-on-auto-completion-mode);;SEE NOTE*
+                   (turn-on-font-lock)
+                   (turn-on-orgstruct)
+                   (turn-on-prettify-symbols-mode)
+                   (turn-on-pretty-lambda-mode)
+                   (turn-on-org-cdlatex)
+                   (turn-on-drag-stuff-mode)
+                   (turn-on-orgstruct)
+                   (turn-on-orgtbl)
+                   (turn-on-pretty-mode)))
+
+;; NOTE* => Auto-completion mode needs to be enabled separately and cannot
+;;be enabled without first defining the
+;;completion-at-point-function.
+;; TODO ==> SET UP AUTO-COMPLETION/ACPF
+
+
+;; ORG-REF
+(use-package org-ref
+  :load-path "~/.emacs.d/el-get/org-ref"
+  :config (setq reftex-default-bibliography '("~/Dropbox/dgn/Papers/refs.bib"))
+  (setq org-ref-bibliography-notes "~/org/notes/bibliography.org")
+  (setq org-ref-default-bibliography '("~/Dropbox/dgn/Papers/refs.bib"))
+  (setq org-ref-pdf-directory "~/Documents/bibtex-pdf"))
+
+
+
+
+;;;;; ORG-SETTINGS:
+(setq org-archive-location: "/Users/dustinneuman/org/archive/archive.org::\"* From %s\"")
+  (setq org-completion-use-ido t)
   (setq org-babel-load-languages (quote ((emacs-lisp . t)
                                          (latex . t)
                                          (ditaa . t)
@@ -31,7 +92,7 @@
   (setq org-datetree-add-timestamp (quote inactive))
   (setq org-hide-emphasis-markers t)
   (setq org-highlight-latex-and-related (quote (latex script entities)))
-  (setq org-pretty-entitites t)
+  (setq org-pretty-entities t)
   (setq org-src-fontify-natively t)
   (setq org-use-speed-commands t)
  (setq org-default-notes-file "~/org/notes/notes.org")
@@ -43,51 +104,8 @@
  (setq org-export-backends (quote (ascii beamer html icalendar latex md org)))
  (setq org-fontify-done-headline t)
  (setq org-fontify-quote-and-verse-blocks t)
- (setq org-fontify-whole-heading-line t))
+ (setq org-fontify-whole-heading-line t)
 
-(use-package org-bullets
-  :load-path "~/.emacs.d/.cask/24.5.1/elpa/org-bullets-20140918.1137"
-  :ensure t
-  :defer t
-  :config (progn (eval-after-load "*.org" (org-bullets-mode))))
-
-(use-package org-ac
-  :load-path "~/.emacs.d/.cask/24.5.1/elpa/org-ac-20140302.413"
-  :ensure t
-  :defer t
-  :config (progn (eval-after-load "*.org" (org-ac/setup-current-buffer))))
-
-(use-package org-extension
-  :load-path "~/.emacs.d/elisp/externals/org-extension.el"
-  :defer t)
-
-(use-package org-import-icalendar
-  :load-path "~/.emacs.d/elisp/externals/org-import-calendar.el"
-  :defer t
-  :init (setq org-important-icalendar-filename "~/org/agenda/ical.org"))
-
-(use-package org-notmuch
-  :load-path "~/.emacs.d/elisp/externals/org-notmuch.el"
-  :defer t)
-
-(use-package org-index
-  :load-path "~/.emacs.d/elisp/externals/org-index.el"
-  :defer t)
-
-(use-package org-wikinodes
-  :load-path "~/.emacs.d/elisp/externals/org-wikinodes.el"
-  :defer t)
-
-(defun my/org-mode-hook ()
-  (interactive)
-  (turn-on-auto-fill)
-  (turn-on-flyspell)
-  (turn-on-reftex)
-  (turn-on-cdlatex)
-  (when (fboundp 'my/enable-abbrev-mode)
-    (my/enable-abbrev-mode)))
-
-(setq org-directory "~/org")
 
 ;; quick access to common tags
 (setq org-tag-alist
@@ -107,8 +125,6 @@
          "* TODO %?\n%U\n")
         ("n" "Notes" entry (file+headline "~/org/notes/notes.org" "Notes")
          "* %? :NOTE:\n%U\n")
-        (("c" "Code" entry (file+headline "~/org/notes/code.org" "Code")
-         "*  %?\n%U\n"))
         ("j" "Journal" entry (file+datetree "~/org/agenda/journal.org")
          "* %?\n%U\n")
         ("b" "Book/Article" entry
@@ -175,6 +191,16 @@
           (lambda()
             (local-set-key (kbd "C-c w") 'org-wc-display)
             (local-set-key (kbd "C-c C-v w") 'org-wc-remove-overlays)))
+
+;; (defun my/org-mode-hook ()
+;;   (interactive)
+;;   (turn-on-auto-fill)
+;;   (turn-on-flyspell)
+;;   (turn-on-reftex)
+;;   (turn-on-cdlatex)
+;;   (when (fboundp 'my/enable-abbrev-mode)
+;;     (my/enable-abbrev-mode)))
+
 
 ;(add-hook 'org-mode-hook
 ;          (lambda ()

@@ -32,3 +32,5 @@
 (global-set-key (kbd "C-M-h") 'backward-kill-word)
 (global-set-key (kbd "C-x C-m") 'helm-M-x)
 (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
+
+(provide 'DGN-keybindings)

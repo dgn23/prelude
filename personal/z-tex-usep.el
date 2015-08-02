@@ -46,7 +46,13 @@
                       (("\\\\cite[]*{\\([^}]+\\)}" . 1)
                        ("\\\\citet[]*{\\([^}]+\\)}" . 1)
                        ("\\\\citep[]*{\\([^}]+\\)}" . 1)
-                       ("\\\\citeyearpar[]*{\\([^}]+\\)}" . 1))))
+                       ("\\\\citeyearpar[]*{\\([^}]+\\)}" . 1)
+                       ("\\\\parencite[]*{\\([^}]+\\)}")
+                       ("\\\\textcite[]*{\\([^}]+\\)}")
+                       ("\\\\cite*[]*{\\([^}]+\\)}")
+                       ("\\\\citetitle[]*{\\([^}]+\\)}")
+                       ("\\\\citeauthor[]*{\\([^}]+\\)}")
+                       ("\\\\citeyear[]*{\\([^}]+\\)}"))))
           (setq bibtex-file-path nil)
           (setq bibtex-files '("~/refs.bib" "~/Dropbox/dgn/Papers/refs.bib" "~/BibFiles"))
 ; (setq bibtex-files  (quote
@@ -64,7 +70,8 @@
   :init
   (progn
     (setq-default preview-scale 1.4
-		  preview-scale-function '(lambda () (* (/ 10.0 (preview-document-pt)) preview-scale)))))
+                  preview-scale-function '(lambda () (* (/ 10.0 (preview-document-pt)) preview-scale))))
+  :config (add-hook 'LaTeX-mode-hook 'LaTeX-preview-setup))
 
 ;;    reftex
 (use-package reftex
@@ -92,13 +99,6 @@
                   (121 . "\\citeyearpar{%l}")))))
   :diminish reftex-mode)
 
-
-(use-package latex-pretty-symbols
-  :load-path "~/.emacs.d/personal/latex-pretty-symbols.el"
-  :defer t
-  :mode ("\\.tex" . latex-mode)
-        ("\\.bib" . bibtex-mode)
-  :config (progn (latex-unicode-simplified)))
 
 (use-package tex-buf                    ; TeX buffer management
   :ensure auctex
@@ -180,3 +180,11 @@
      ("Clean" "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files")
      ("Clean All" "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
      ("Other" "" TeX-run-command t t :help "Run an arbitrary command"))))
+
+(if (file-exists-p "~/.emacs.d/elisp/lib/latex-unicode.el")
+    (load "~/.emacs.d/elisp/lib/latex-unicode.el"))
+
+(use-package latex-unicode
+  :load-path "~/.emacs.d/elisp/lib"
+  :defer t
+  :config (add-hook 'LaTeX-mode-hook 'latex-unicode-simplified))

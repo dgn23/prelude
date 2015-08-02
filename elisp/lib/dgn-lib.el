@@ -3,7 +3,7 @@
 ;;; The goal is to keep init times as short as possible.
 
 ;;;      Narrow-widen DWIM
-(defun my/narrow-or-widen-dwim (p)
+(defun dgn/narrow-or-widen-dwim (p)
   "If the buffer is narrowed, it widens. Otherwise, it narrows intelligently.
 Intelligently means: region, org-src-block, org-subtree, or defun,
 whichever applies first.

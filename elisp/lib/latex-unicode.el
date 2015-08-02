@@ -530,6 +530,6 @@ their unicode counterpart"
 (add-hook 'latex-mode-hook 'latex-unicode-simplified)
 (add-hook 'LaTeX-mode-hook 'latex-unicode-simplified)
 
-(provide 'latex-pretty-symbols)
+(provide 'latex-unicode)
 
 ;;; latex-unicode.el ends here
