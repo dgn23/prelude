@@ -143,7 +143,7 @@
   :bind (("C-x C-f"   . helm-find-files)
         ("M-x"        . helm-M-x)
         ("C-x b"      . helm-mini)
-        ("C-x C-1"    . helm-occur)
+        ("C-x C-3"    . helm-occur)
         ("C-x C-2"    . helm-swoop)
         ("C-c C-d"    . helm-descbinds))
   :config
@@ -281,7 +281,9 @@
 ;;    ace-jump (reminder: C-x C-SPC to pop-global-mark)
 (use-package ace-jump-mode
   :ensure t
-  :bind (("C-;" . ace-jump-mode) ("C-x C-;" . ace-jump-mode-pop-mark))
+  :bind (("C-c SPC" . ace-jump-mode)
+         ("C-c M-SPC" . ace-jump-line-mode)
+         ("C-x C-;" . ace-jump-mode-pop-mark))
   :init (setq ace-jump-mode-scope 'frame)
   :config (ace-jump-mode-enable-mark-sync))
 
@@ -332,7 +334,7 @@
 (use-package fancy-narrow         :ensure t    :defer t)
 (use-package ibuffer-projectile   :ensure t    :defer t)
 (use-package zenburn :disabled t  :ensure t    :defer t :init (load-theme 'zenburn 'no-confirm))
-(use-package server                            :init (server-mode) :diminish server-buffer-clients)
+;(use-package server                            :init (server-mode) :diminish server-buffer-clients)
 (use-package fancy-battery        :ensure t    :init   (fancy-battery-mode))
 (use-package guide-key            :ensure t    :init (setq guide-key/guide-key-sequence t guide-key/idle-delay 0.7) :config (guide-key-mode 1))
 (use-package nyan-mode            :ensure t    :config (nyan-mode))
@@ -353,7 +355,6 @@
 (use-package paradox              :ensure t    :init (progn (setq paradox-github-token  "05f357727e2b27c83410fcc63fc9b1a9a4afc651"))  :bind (("C-c x p" . paradox-list-packages) ("C-c x P" . package-list-packages-no-fetch)))
 (use-package unbound              :ensure t    :commands describe-unbound-keys)
 (use-package rainbow-mode         :ensure t    :commands rainbow-mode :config (progn (rainbow-mode)))
-(use-package ace-jump-mode        :ensure t    :bind (("C-c SPC" . ace-jump-mode) ("C-c M-SPC" . ace-jump-line-mode)))
 (use-package smooth-scrolling     :ensure t    :config (setq smooth-scroll-margin 4))
 (use-package markdown-mode        :ensure t :mode (("\\.md\\'" . markdown-mode) ("\\.mmd\\'" . markdown-mode) ("\\.markdown\\'" . markdown-mode)))
 (use-package undo-tree            :ensure t :config (progn (setq undo-tree-mode-lighter nil) (setq global-undo-tree-mode nil)))

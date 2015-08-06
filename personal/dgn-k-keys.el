@@ -10,6 +10,10 @@
 (global-set-key [wheel-left] 'next-line)
 (global-set-key [double-wheel-left] 'next-line)
 
+;; Common Keybindings and Idiosyncratic Preferences
+(global-set-key (kbd "C-c C-,") 'ispell-word)
+
+
 ;;; OS X Tweak - CUA-style copy region is super-c (i.e., fn-c)
 (setq ns-function-modifier 'super)
 
@@ -28,6 +32,7 @@
 (define-key dgn/toggle-map "h" 'hl-line-mode)
 (define-key dgn/toggle-map "v" #'dgn/turn-on-viewing-mode)
 (define-key dgn/toggle-map "n" #'dgn/narrow-or-widen-dwim)
+(define-key dgn/toggle-map "w" 'whitespace-mode)
 (global-set-key (kbd "C-x +") 'balance-windows-area)
 (global-set-key (kbd "C-M-h") 'backward-kill-word)
 (global-set-key (kbd "C-x C-m") 'helm-M-x)

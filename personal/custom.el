@@ -24,6 +24,14 @@
  '(airline-utf-glyph-subseparator-right 57523)
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
+ '(auth-source-cache-expiry nil)
+ '(auth-source-protocols
+   (quote
+    ((imap "imap" "imaps" "143" "993")
+     (pop3 "pop3" "pop" "pop3s" "110" "995")
+     (ssh "ssh" "22")
+     (sftp "sftp" "115")
+     (smtp "smtp" "25" "587"))))
  '(auto-completion-at-point-functions
    (quote
     (auto-complete helm-completing-read-with-cands-in-buffer helm-complete-file-name-at-point company-complete hippie-expand)))
@@ -34,6 +42,7 @@
  '(back-button-mode nil)
  '(battery-mode-line-format " [Batt. Perc: %p Time: %t ] ")
  '(bbyac-global-mode t)
+ '(bind-key-describe-special-forms t)
  '(bmkp-last-as-first-bookmark-file "/Users/dustinneuman/.emacs.d/savefile/bookmarks")
  '(browse-url-dwim-mode nil)
  '(clocker-extra-annoying nil)
@@ -52,7 +61,7 @@
      (predictive-latex-bibstyle . t))))
  '(custom-safe-themes
    (quote
-    ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
+    ("fc6ee2cdf073d6f21a9b96dd59d1395c736cab7dc9d53dc9e97a7cf55295775e" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
  '(debug-on-error nil)
  '(deft-auto-save-interval 60.0)
  '(deft-use-filter-string-for-filename t)
@@ -82,6 +91,27 @@
  '(flyspell-highlight-flag t)
  '(follow-auto t)
  '(follow-mode-line-text "Fw")
+ '(font-latex-user-keyword-classes
+   (quote
+    (("philex"
+      (("lb" "[{{")
+       ("lbu" "[{{{{")
+       ("lbp" "[{{{")
+       ("bpaformat" "{{{")
+       ("lbpa" "[{{")
+       ("lbpb" "[{{")
+       ("lbpc" "[{{")
+       ("lbpd" "[{{")
+       ("rf" "[{")
+       ("rn" "[{")
+       ("rfx" "[{")
+       ("rfn" "[{"))
+      (:weight bold)
+      noarg)
+     ("dgn-macros"
+      ("ess")
+      (:family "Roboto" :weight bold)
+      command))))
  '(git-gutter:hide-gutter t)
  '(git-gutter:modified-sign ">")
  '(git-gutter:window-width 2)
@@ -95,7 +125,15 @@
  '(global-orglink-mode t)
  '(global-relative-line-numbers-mode nil)
  '(global-smart-tab-mode t)
+ '(gnus-agent-expire-days 28)
  '(gnus-desktop-notify-mode nil nil (gnus))
+ '(gnus-icalendar-org-capture-file "~/org/agenda/ical.org-mode")
+ '(gnus-ignored-headers
+   (quote
+    ("^Path:" "^References:" "^Xref:" "^Lines:" "^Relay-Version:" "^Message-ID:" "^Approved:" "^Sender:" "^Received:" "^X-UIDL:" "^MIME-Version:" "^Return-Path:" "^In-Reply-To:" "^Content-Type:" "^Content-Transfer-Encoding:" "^X-WebTV-Signature:" "^X-MimeOLE:" "^X-MSMail-Priority:" "^X-Loop:" "^X-Authentication-Warning:" "^X-MIME-Autoconverted:" "^X-Face:" "^X-Attribution:" "^X-Originating-IP:" "^Delivered-To:" "^NNTP-[-A-Za-z]+:" "^Distribution:" "^X-no-archive:" "^X-Trace:" "^X-Complaints-To:" "^X-NNTP-Posting-Host:" "^X-Orig.*:" "^Abuse-Reports-To:" "^Cache-Post-Path:" "^X-Article-Creation-Date:" "^X-Poster:" "^X-Mail2News-Path:" "^X-Server-Date:" "^X-Cache:" "^Originator:" "^X-Problems-To:" "^X-Auth-User:" "^X-Post-Time:" "^X-Admin:" "^X-UID:" "^Resent-[-A-Za-z]+:" "^X-Mailing-List:" "^Precedence:" "^Original-[-A-Za-z]+:" "^X-filename:" "^X-Orcpt:" "^Old-Received:" "^X-Pgp:" "^X-Auth:" "^X-From-Line:" "^X-Gnus-Article-Number:" "^X-Majordomo:" "^X-Url:" "^X-Sender:" "^MBOX-Line:" "^Priority:" "^X400-[-A-Za-z]+:" "^Status:" "^X-Gnus-Mail-Source:" "^Cancel-Lock:" "^X-FTN:" "^X-EXP32-SerialNo:" "^Encoding:" "^Autoforwarded:" "^Original-Encoded-Information-Types:" "^X-Ya-Pop3:" "^X-Face-Version:" "^X-Vms-To:" "^X-ML-NAME:" "^X-ML-COUNT:" "^Mailing-List:" "^X-finfo:" "^X-md5sum:" "^X-md5sum-Origin:" "^X-Sun-Charset:" "^X-Accept-Language:" "^X-Envelope-Sender:" "^List-[A-Za-z]+:" "^X-Listprocessor-Version:" "^X-Received:" "^X-Distribute:" "^X-Sequence:" "^X-Juno-Line-Breaks:" "^X-Notes-Item:" "^X-MS-TNEF-Correlator:" "^x-uunet-gateway:" "^X-Received:" "^Content-length:" "^X-precedence:" "^X-Authenticated-User:" "^X-Comment:" "^X-Report:" "^X-Abuse-Info:" "^X-HTTP-Proxy:" "^X-Mydeja-Info:" "^X-Copyright:" "^X-No-Markup:" "^X-Abuse-Info:" "^X-From_:" "^X-Accept-Language:" "^Errors-To:" "^X-BeenThere:" "^X-Mailman-Version:" "^List-Help:" "^List-Post:" "^List-Subscribe:" "^List-Id:" "^List-Unsubscribe:" "^List-Archive:" "^X-Content-length:" "^X-Posting-Agent:" "^Original-Received:" "^X-Request-PGP:" "^X-Fingerprint:" "^X-WRIEnvto:" "^X-WRIEnvfrom:" "^X-Virus-Scanned:" "^X-Delivery-Agent:" "^X-Gateway:" "^X-Local-Origin:" "^X-Local-Destination:" "^X-UserInfo1:" "^X-Hashcash:" "^Face:" "^X-DMCA-Notifications:" "^X-Abuse-and-DMCA-Info:" "^X-Postfilter:" "^X-Gpg-.*:" "^X-Disclaimer:" "^Envelope-To:" "^System-Type:" "^X-Injected-Via-Gmane:" "^X-Gmane-NNTP-Posting-Host:" "^Jabber-ID:" "^Archived-At:" "^Envelope-Sender:" "^Envelope-Recipients:")))
+ '(gnus-sorted-header-list
+   (quote
+    ("^Date:" "^From:" "^Subject:" "^Summary:" "^Keywords:" "^Newsgroups:" "^Followup-To:" "^To:" "^Cc:" "^Organization:")))
  '(golden-ratio-mode t)
  '(helm-adaptive-mode t nil (helm-adaptive))
  '(helm-bibtex-bibliography
@@ -128,7 +166,7 @@
      ("???" . "#cc9393")
      ("NTS" . "#ff1419")
      ("CITE" . "#2aa198"))))
- '(hlt-auto-faces-flag t)
+ '(hlt-auto-faces-flag nil)
  '(ispell-highlight-p t)
  '(ispell-silently-savep t)
  '(ivy-mode t)
@@ -144,7 +182,7 @@
  '(osx-pseudo-daemon-mode t)
  '(package-selected-packages (quote (s)) t)
  '(paradox-automatically-star nil)
- '(paradox-github-token "05f357727e2b27c83410fcc63fc9b1a9a4afc651")
+ '(paradox-github-token "05f357727e2b27c83410fcc63fc9b1a9a4afc651" t)
  '(pdf-virtual-global-minor-mode t)
  '(predictive-add-to-dict-ask nil)
  '(predictive-auto-add-to-dict t)
@@ -185,10 +223,15 @@
  '(synosaurus-choose-method (quote popup))
  '(tex-bibtex-command "biber")
  '(timeclock-mode-line-display nil)
- '(undo-tree-mode-lighter Undo!)
+ '(undo-tree-mode-lighter (quote (quote (undo))))
  '(unicode-fonts-fallback-font-list (quote ("Font Awesome" "Symbola" "Quivira")))
  '(unicode-fonts-skip-font-groups nil)
+ '(which-key-echo-keystrokes 1)
+ '(which-key-idle-delay 0.7)
  '(which-key-mode t)
+ '(which-key-popup-type (quote side-window))
+ '(which-key-side-window-location (quote (bottom right)))
+ '(which-key-side-window-max-height 0.33)
  '(writeroom-mode-line t)
  '(writeroom-restore-window-config t)
  '(writeroom-width 90))
@@ -205,14 +248,5 @@
  '(airline-visual-center ((t (:background "blue violet" :foreground "#000000" :weight normal))))
  '(clocker-mode-line-clock-in-face ((t (:inherit mode-line :background "dark green" :foreground "white"))))
  '(completion-highlight-face ((t (:background "MediumOrchid1" :foreground "black"))))
- '(cursor ((t (:background "cadet blue"))))
- '(error ((((class color) (min-colors 89)) (:foreground "#ff4b4b"))))
  '(fixmee-notice-face ((t (:inherit font-lock-warning-face :box (:line-width 2 :color "gray" :style released-button)))))
- '(flycheck-error ((((class color) (min-colors 89)) (:background "#dd0000" :foreground "#ffffff" :bold t))))
- '(flyspell-incorrect ((((class color) (min-colors 89)) (:background "#ef2929" :foreground "#c6c6c6" :bold t))))
- '(git-gutter:added ((((class color) (min-colors 89)) (:foreground "#008700" :background "#d7ff5f" :bold t))))
- '(git-gutter:modified ((((class color) (min-colors 89)) (:foreground "#875f00" :background "#ffff87" :bold t))))
- '(git-gutter:unchanged ((t (:background "dodgerblue"))))
- '(highlight ((((class color) (min-colors 89)) (:background "#4e4e4e"))))
- '(hl-line ((((class color) (min-colors 89)) (:background "#4e4e4e"))))
- '(region ((t (:background "#303030" :foreground "magenta1")))))
+ '(git-gutter:unchanged ((t (:background "dodgerblue")))))

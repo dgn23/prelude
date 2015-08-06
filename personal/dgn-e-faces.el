@@ -57,7 +57,7 @@
   	:ensure solarized-theme
   	:init (load-theme 'solarized-dark 'no-confirm)))
 
-(defun dgn/solarized-light ()
+(defun dgn/leuven-light ()
   (interactive)
   (use-package leuven-theme
   	:load-path "~/.emacs.d/.Cask/24.5.1/elpa/leuven-theme-20150622.306"
@@ -98,17 +98,17 @@
 
 (use-package powerline
   :defer t
-	:init (powerline-default-theme)
+  :init (powerline-default-theme)
   :config (progn
             (setq powerline-arrow-shape 'curve)
             (setq powerline-default-separator 'utf-8)
             (setq powerline-default-separator-dir '(right . left))))
 
 (use-package smart-mode-line
-	:disabled t
-	:init (progn (setq sml/theme dgn/background
-					   sml/name-width 20)
-				 (sml/setup)))
+:disabled t
+:init (progn (setq sml/theme 'moe-dark-theme
+                   sml/name-width 20)
+             (sml/setup)))
 
 ;;; MODELINE (adapted from emacs-fu)
 (defun dgn/modeline ()
@@ -167,7 +167,7 @@
                       (emacs-uptime "Uptime:%hh"))))
     " --"
     ;; i don't want to see minor-modes; but if you want, uncomment this:
-     minor-mode-alist  ;; list of minor modes
+    ;;  minor-mode-alist  ;; list of minor modes
     "" ;; fill with '-'
     )))
 
