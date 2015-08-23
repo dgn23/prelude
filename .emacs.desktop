@@ -1,0 +1,96 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Mon Aug 10 22:16:02 2015
+;; Desktop file format version 206
+;; Emacs version 24.5.1
+
+;; Global section:
+(setq desktop-saved-frameset [frameset 1 (21961 34066 406307 0) (desktop . "206") "dustinneuman@dgn.mbp" nil nil ((((font-backend mac-ct ns) (fontsize . 0) (font . "-*-Myriad Pro-normal-normal-normal-*-13-*-*-*-p-0-iso10646-1") (border-width . 0) (internal-border-width . 2) (vertical-scroll-bars) (foreground-color . "#c6c6c6") (background-color . "#303030") (line-spacing) (left-fringe . 9) (right-fringe . 9) (menu-bar-lines . 1) (tool-bar-lines . 0) (title) (icon-type) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 0) (alpha) (fullscreen) (display-type . color) (background-mode . dark) (cursor-color . "#c6c6c6") (powerline-cache) (frameset--id . "7E54-47DF-963A-7FD3") (frameset--mini t) (height . 52) (width . 173) (modeline . t) (minibuffer . t) (unsplittable) (left . 0) (top . 23) (right-divider-width . 0) (bottom-divider-width . 0) (icon-name) (visibility . t) (display . "dgn.mbp") (explicit-name) (tool-bar-position . top)) ((min-height . 4) (min-width . 10) (min-height-ignore . 3) (min-width-ignore . 5) (min-height-safe . 1) (min-width-safe . 2) (min-pixel-height . 64) (min-pixel-width . 60) (min-pixel-height-ignore . 48) (min-pixel-width-ignore . 30) (min-pixel-height-safe . 16) (min-pixel-width-safe . 12)) leaf (pixel-width . 1056) (pixel-height . 816) (total-width . 176) (total-height . 51) (normal-height . 1.0) (normal-width . 1.0) (buffer "*Customize Group: Buffer Menu*" (selected . t) (hscroll . 0) (fringes 9 9 nil) (margins nil) (scroll-bars 0 0 t nil) (vscroll . 0) (dedicated) (point . 369) (start . 1))) (((font-backend mac-ct ns) (fontsize . 0) (font . "-*-Myriad Pro-normal-normal-normal-*-13-*-*-*-p-0-iso10646-1") (border-width . 0) (internal-border-width . 2) (vertical-scroll-bars) (foreground-color . "#c6c6c6") (background-color . "#303030") (line-spacing) (left-fringe . 9) (right-fringe . 9) (menu-bar-lines . 1) (tool-bar-lines . 0) (title) (icon-type) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 0) (alpha) (fullscreen . fullboth) (horizontal-scroll-bars . t) (display-type . color) (background-mode . dark) (cursor-color . blue) (environment) (frameset--id . "4EB5-B95C-5D31-E471") (frameset--mini t . t) (modeline . t) (minibuffer . t) (unsplittable) (right-divider-width . 0) (bottom-divider-width . 0) (icon-name) (visibility . t) (display . "dgn.mbp") (explicit-name) (tool-bar-position . top) (maximized) (powerline-cache) (height . 56) (width . 236) (left . 0) (top . 0)) ((min-height . 4) (min-width . 20) (min-height-ignore . 3) (min-width-ignore . 10) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 64) (min-pixel-width . 120) (min-pixel-height-ignore . 48) (min-pixel-width-ignore . 60) (min-pixel-height-safe . 16) (min-pixel-width-safe . 24)) hc (pixel-width . 1436) (pixel-height . 880) (total-width . 239) (total-height . 55) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 544) (pixel-height . 880) (total-width . 90) (total-height . 55) (normal-height . 1.0) (normal-width . 0.3788300835654596) (buffer "PSQD15-2.tex" (selected) (hscroll . 0) (fringes 9 9 nil) (margins nil) (scroll-bars 0 0 t nil) (vscroll . 0) (dedicated) (point . 2190) (start . 2113))) (leaf (last . t) (pixel-width . 892) (pixel-height . 880) (total-width . 149) (total-height . 55) (normal-height . 1.0) (normal-width . 0.6211699164345403) (buffer "*Customize Apropos*" (selected) (hscroll . 0) (fringes 9 9 nil) (margins nil) (scroll-bars 0 0 t nil) (vscroll . 0) (dedicated) (point . 1) (start . 1)))))])
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list '("/Users/dustinneuman/.emacs.d/TAGS/TAGS"))
+(setq search-ring '("tex"))
+(setq regexp-search-ring nil)
+(setq register-alist nil)
+(setq file-name-history '("~/Dropbox/PSQD/betteroutlinepsqdprose.tex" "~/Dropbox/PSQD/PSQD15-2.tex" "~/Dropbox/PSQD/PSQD-2.tex" "~/.emacs.d/dgn-solarium-theme.el" "~/Dropbox/dgn/papers/Locke15/Lockeformsol.org" "~/Dropbox/dgn/Papers/Locke15/OL.org" "~/Dropbox/PSQD/PSQD.org" "~/.emacs.d/elisp/DGN-Solarized-theme.el" "~/.emacs.d/personal/dgn-e-faces.el" "~/.emacs.d/personal/dgn-c-org.el" "~/Dropbox/papers/Locke/Locke.bib" "~/Dropbox/dgn/papers/Locke15/LockeFormsOL.org" "~/Dropbox/PSQD15-2.tex" "~/.emacs.d/personal/dgn-b-usep.el" "~/.atprc.vim" "~/Dropbox/papers/Locke/ram-for-psqd.tex" "~/.emacs.d/.cask/24.5.1/elpa/eh-gnus-0.0.6/eh-gnus.el" "~/.emacs.d/personal/custom.el" "~/Dropbox/papers/Locke/LockePSQD.tex" "~/Dropbox/dgn/Papers/Locke14/LockePSQD.tex" "/Users/dustinneuman/Dropbox/papers/Locke/LockePSQD.tex" "~/Dropbox/papers/Locke/PSQDoutline.md" "~/.emacs.d/personal/dgn-k-keys.el" "/Users/dustinneuman/.emacs.d/.git/COMMIT_EDITMSG" "~/Dropbox/papers/Locke/PSQD ARG Outline" "~/Desktop/Leibniz Questions" "~/Dropbox/papers/Locke/LockePSQD.pdf" "~/Dropbox/papers/Locke/LockePSQD_Scrap.md" "~/Dropbox/papers/Locke/lockescrap.md" "~/Dropbox/papers/Locke/Locke.org" "~/Dropbox/papers/Locke/Locke2.tex" "~/.emacs.d/personal/z-tex-usep.el" "~/Dropbox/dgn/Papers/refs.bib" "~/org/agenda/agenda.org" "~/rules/biber.yaml" "~/Dropbox/papers/Locke/LockePSQD.bcf" "/Users/dustinneuman/Dropbox/papers/Locke/LockePSQD.tex" "~/org/agenda/journal.org" "~/.emacs.d/elisp/lib/latex-pretty-symbols.el" "~/.emacs.d/elisp/lib/dgn-lib.el" "~/.emacs.d/core/prelude-osx.el" "~/.emacs.d/init.el" "~/.emacs.d/personal/preload/dgn-preload.el" "~/Dropbox/dgn/Papers/Locke15/LockeFormsOL.org" "~/.emacs.d/el-get/el-get/recipes/2048.el.rcp" "~/git/helm-bibtex/helm-bibtex.el" "~/vimprovement" "~/.emacs.d/Cask" "~/.emacs.d/.cask/24.5.1/elpa/auctex-11.88.6/README" "~/Dropbox/papers/Locke/Locke.tex" "~/Dropbox/org/Locke.org" "~/.emacs.d/personal/dgn-c-usep-org.el" "/Users/dustinneuman/Dropbox/papers/Locke/Locke.tex" "/Users/dustinneuman/ESKH/admin/interest-init-setup.el" "~/.emacs.d/personal/dgn-a-init.el" "" "dgn-b-usep.el" "~/.emacs.d/personal/dgn-d-usep-tex.el" "/Users/dustinneuman/.msmtprc" "~/.emacs.d/prelude-modules.el" "~/.emacs.d/personal/latex-pretty-symbols.el" "~/.emacs.d/personal/dgn-org.el" "~/.emacs.d/personal/dgn-init.el" "~/.emacs.d/personal/dgn-config.el" "~/.emacs.d/personal/dgn-alist.el" "~/Desktop/Docs/emacs-inbox/visible-mark.el.txt" "~/Desktop/Docs/emacs-inbox/amit-modeline.el" "~/Dropbox/dgn/Papers/PCS4/PCS5/pcs5.tex" "~/Dropbox/dgn/Papers/PCS4/PCS5/PCS5.Sec2.tex" "~/.emacs.d/core/prelude-global-keybindings.el" "~/.emacs.d/personal/dgn-latex.el" "~/.emacs.d/personal/prelude-config.el" "~/.emacs.d/elisp/unloaded/cutouts.el" "~/.emacs.d/personal/prelude-latex.el" "prelude" "/Users/dustinneuman/.emacs.d/init.el" "~/contacts/vcardcontacts.vcf" "~/Cask" "~/emacs-backup/esk-dot-emacs-d/dustinneuman.el" "/Users/dustinneuman/lisp/usepackage.el" "~/org/notes/code.org" "~/.emacs.d/personal/org-setup.el" "/Users/dustinneuman/org/agenda/do.org" "~/Dropbox/dgn/Papers/Locke15/LockeForms.tex" "~/.emacs.d/elisp/sandbox/auto-complete-auctex.el" "~/.emacs.d/el-get/emacs-powerline/powerline.el" "~/Dropbox/org/GTD.org" "/Users/dustinneuman/.emacs.d/diary" "/Users/dustinneuman/.emacs.d/todo/diary" "~/.emacs.d/todo/todo.todo" "~/Dropbox/papers/Locke.tex" "/Users/dustinneuman/.emacs.d/todo/doing.org" "~/Dropbox/dgn/Papers/Locke15/Locke.bib" "~/Dropbox/dgn/Papers/Locke14/LockeStructure.tex" "~/Dropbox/dgn/Papers/Locke15/Locke15-Essence/LockeArcheOL.org" "~/Dropbox/dgn/Papers/Locke15/Locke15-Essence/LockeEssence.tex" "/Users/dustinneuman/.emacs.d/tags/TAGS" "~/.ctags" "/Users/dustinneuman/Desktop/personal/el-get-config.el" "/Users/dustinneuman/.zprezto/runcoms/zshrc"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/Users/dustinneuman/Dropbox/PSQD/betteroutlinepsqdprose.tex"
+  "betteroutlinepsqdprose.tex"
+  'plain-tex-mode
+  '(abbrev-mode override-global-mode prelude-mode global-auto-revert-mode volatile-highlights-mode flyspell-mode projectile-mode anzu-mode undo-tree-mode diff-hl-mode flycheck-mode bbyac-mode evil-escape-mode TeX-PDF-mode company-mode helm-mode guide-key-mode egg-minor-mode golden-ratio-mode evil-snipe-mode fancy-narrow-mode ivy-mode predictive-mode drag-stuff-mode fixmee-mode button-lock-mode icicle-mode)
+  806
+  '(972 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/dustinneuman/Dropbox/PSQD/PSQD15-2.tex"
+  "PSQD15-2.tex"
+  'latex-mode
+  '(abbrev-mode override-global-mode prelude-mode global-auto-revert-mode volatile-highlights-mode flyspell-mode projectile-mode anzu-mode whitespace-mode undo-tree-mode diff-hl-mode flycheck-mode bbyac-mode evil-escape-mode auto-complete-mode TeX-PDF-mode company-mode helm-mode guide-key-mode egg-minor-mode golden-ratio-mode evil-snipe-mode fancy-narrow-mode ivy-mode predictive-mode drag-stuff-mode fixmee-mode button-lock-mode text-scale-mode icicle-mode)
+  2190
+  '(2985 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix) (TeX-master . t)))
+
+(desktop-create-buffer 206
+  "/Users/dustinneuman/Dropbox/PSQD/psqd13.org"
+  "psqd13.org"
+  'org-mode
+  '(abbrev-mode override-global-mode prelude-mode global-auto-revert-mode volatile-highlights-mode flyspell-mode projectile-mode anzu-mode undo-tree-mode diff-hl-mode flycheck-mode bbyac-mode evil-escape-mode auto-complete-mode TeX-PDF-mode company-mode helm-mode guide-key-mode egg-minor-mode golden-ratio-mode evil-snipe-mode fancy-narrow-mode hi-lock-mode ivy-mode predictive-mode drag-stuff-mode fixmee-mode button-lock-mode icicle-mode)
+  182
+  '(1 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix) (truncate-lines . t)))
+
+(desktop-create-buffer 206
+  "/Users/dustinneuman/Dropbox/PSQD/PSQD-2.tex"
+  "PSQD-2.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode override-global-mode prelude-mode global-auto-revert-mode volatile-highlights-mode flyspell-mode projectile-mode anzu-mode whitespace-mode undo-tree-mode diff-hl-mode flycheck-mode bbyac-mode evil-escape-mode auto-complete-mode TeX-PDF-mode company-mode helm-mode guide-key-mode egg-minor-mode golden-ratio-mode evil-snipe-mode fancy-narrow-mode ivy-mode smart-tab-mode predictive-mode drag-stuff-mode reftex-mode fixmee-mode button-lock-mode latex-extra-mode icicle-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/Users/dustinneuman/Dropbox/PSQD/Outline.org"
+  "Outline.org"
+  'org-mode
+  '(abbrev-mode override-global-mode prelude-mode global-auto-revert-mode volatile-highlights-mode flyspell-mode projectile-mode anzu-mode undo-tree-mode diff-hl-mode flycheck-mode bbyac-mode org-cdlatex-mode evil-escape-mode auto-complete-mode TeX-PDF-mode company-mode helm-mode guide-key-mode egg-minor-mode golden-ratio-mode evil-snipe-mode fancy-narrow-mode ivy-mode predictive-mode drag-stuff-mode fixmee-mode button-lock-mode text-scale-mode icicle-mode)
+  12202
+  '(8641 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (truncate-lines . t)))
+
+(desktop-create-buffer 206
+  "/Users/dustinneuman/Dropbox/dgn/papers/Locke15/Lockeformsol.org"
+  "Lockeformsol.org"
+  'org-mode
+  '(abbrev-mode override-global-mode prelude-mode global-auto-revert-mode volatile-highlights-mode flyspell-mode projectile-mode anzu-mode undo-tree-mode diff-hl-mode flycheck-mode bbyac-mode evil-escape-mode auto-complete-mode TeX-PDF-mode company-mode helm-mode guide-key-mode egg-minor-mode golden-ratio-mode evil-snipe-mode fancy-narrow-mode hi-lock-mode ivy-mode predictive-mode drag-stuff-mode fixmee-mode button-lock-mode text-scale-mode icicle-mode)
+  14627
+  '(989 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix) (truncate-lines . t)))
+
+(desktop-create-buffer 206
+  "/Users/dustinneuman/.emacs.d/completions.BAK"
+  " *completion-save-buffer*"
+  'fundamental-mode
+  '(override-global-mode prelude-mode global-auto-revert-mode volatile-highlights-mode projectile-mode anzu-mode undo-tree-mode diff-hl-mode bbyac-mode evil-escape-mode TeX-PDF-mode helm-mode guide-key-mode golden-ratio-mode evil-snipe-mode fancy-narrow-mode hi-lock-mode ivy-mode smart-tab-mode predictive-mode drag-stuff-mode icicle-mode)
+  302
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+

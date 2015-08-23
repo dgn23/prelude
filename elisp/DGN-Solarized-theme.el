@@ -4,13 +4,13 @@
 (custom-theme-set-faces
  'DGN-Solarized
  '(default ((t (:family "Myriad Pro" :foundry "nil" :width normal :height 130 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "#839496" :background "#002b36" :stipple nil :inherit nil))))
- '(cursor ((t (:background "#839496" :foreground "#002b36"))))
+ '(cursor ((t (:background "#2aa191" :foreground "Black"))))
  '(fixed-pitch ((t (:family "Monospace"))))
  '(variable-pitch ((t (:family "Sans Serif"))))
  '(escape-glyph ((t (:weight bold :foreground "#F0DFAF"))))
  '(minibuffer-prompt ((t (:foreground "#2aa191" :weight bold))))
  '(highlight ((t (:background "#073642"))))
- '(region ((t (:inverse-video t :weight unspecified :background "#002b36" :foreground "#586e75"))))
+ '(region ((t (:inverse-video nil :weight demibold :background "#2aa191" :foreground "Magenta"))))
  '(shadow ((t (:foreground "#586e75"))))
  '(secondary-selection ((t (:background "#073642"))))
  '(trailing-whitespace ((t (:inverse-video t :foreground "#dc322f" :background "#CC9393"))))

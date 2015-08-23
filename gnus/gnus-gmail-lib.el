@@ -167,24 +167,24 @@
 (setq gnus-ignored-newsgroups  "")
 (setq gnus-outgoing-message-group "[Google Mail]/Sent Mail")
 (setq gnus-summary-mark-below 0)
-(setq gnus-visible-headers 
+(setq gnus-visible-headers
       '(
-  "^Cc:" 
-  "^Date:" 
-  "^Followup-To:" 
-  "^From:" 
-  "^Keywords:" 
-  "^Newsgroups:" 
+  "^Cc:"
+  "^Date:"
+  "^Followup-To:"
+  "^From:"
+  "^Keywords:"
+  "^Newsgroups:"
   "^Mailing-List:"
-  "^Organization:" 
-  "^Posted-To:" 
-  "^Reply-To:" 
-  "^Subject:" 
-  "^Summary:" 
-  "^To:" 
+  "^Organization:"
+  "^Posted-To:"
+  "^Reply-To:"
+  "^Subject:"
+  "^Summary:"
+  "^To:"
   "^X-Newsreader:"
   "^X-Url:"
-; "^X-" ; Show all X-headers))
+  ))
 
 ;;Activate foreign newsgroups
 (setq gnus-activate-foreign-newsgroups t)
@@ -263,7 +263,7 @@
       '(
   ;; Format the more important headers as bold
  ("\\(from\\|to\\|sender\\|newsgroups\\|subject\\):" bold bold)
-  
+
   ;; Underline the subject
  ("subject:" bold underline)
 
@@ -279,5 +279,3 @@
 
 ;; Face for the signature
 (setq gnus-signature-face font-lock-comment-face)
-
-
