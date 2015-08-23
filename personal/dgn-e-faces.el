@@ -28,8 +28,8 @@
  ;; Set default font. First one found is selected.
 (cond
   ((eq window-system nil) nil)
-    ((font-existsp "Source Code Pro")
-      (set-face-attribute 'default nil :height 131 :font "Source Code Pro"))
+    ((font-existsp "Roboto")
+      (set-face-attribute 'default nil :height 161 :font "Roboto"))
     ((font-existsp "Myriad Pro")
       (set-face-attribute 'default nil :height 121 :font "Myriad Pro")))
 
@@ -76,10 +76,11 @@
     :init (load-theme 'moe-light t)))
 
 (defun dgn/add-watchwords ()
+  (interactive)
   "Highlight NTS, NOTE, TODO, and CITE in code"
   (font-lock-add-keywords
    nil '(("\\<\\(NTS\\|NOTE\\|TODO\\|CITE\\)\\>"
-        1 '((:foreground "#D33682") (:weight bold)) t)))) ;why no love for cite?
+        1 '((:foreground "#D33682") (:weight bold)) t))))
 
 (defun dgn/hl-line-on ()
   "Turn on hl-line-mode"
@@ -165,7 +166,7 @@
               'help-echo
               (concat (format-time-string "%c; ")
                       (emacs-uptime "Uptime:%hh"))))
-    " --"
+    ;;" --"
     ;; i don't want to see minor-modes; but if you want, uncomment this:
     ;;  minor-mode-alist  ;; list of minor modes
     "" ;; fill with '-'

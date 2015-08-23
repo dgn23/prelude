@@ -16,7 +16,7 @@
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture))
-  :init (setq org-directory "~/org") (setq org-agenda-files '("~/org/agenda/agenda.org" "~/org/agenda/gtd.org"))
+  :init (setq org-directory "~/org") (setq org-agenda-files '("~/org/agenda/gtd.org"))
   (setq org-completion-use-ido t)
   (use-package org-bullets
           :load-path "~/.emacs.d/.cask/24.5.1/elpa/org-bullets-20140918.1137"
@@ -26,7 +26,6 @@
   (use-package org-ac
     :load-path "~/.emacs.d/.cask/24.5.1/elpa/org-ac-20140302.413"
     :ensure t
-    :defer t
     :config (progn (eval-after-load "*.org" (org-ac/setup-current-buffer))))
   (use-package org-extension
     :load-path "~/.emacs.d/elisp/externals/org-extension.el"
@@ -36,14 +35,12 @@
     :defer t
     :init (setq org-important-icalendar-filename "~/org/agenda/ical.org"))
   (use-package org-notmuch
-    :load-path "~/.emacs.d/elisp/externals/org-notmuch.el"
-    :defer t)
+    :load-path "~/.emacs.d/elisp/externals")
   (use-package org-index
     :load-path "~/.emacs.d/elisp/externals/org-index.el"
     :defer t)
   (use-package org-wikinodes
-    :load-path "~/.emacs.d/elisp/externals/org-wikinodes.el"
-    :defer t)
+    :load-path "~/.emacs.d/elisp/externals/org-wikinodes.el")
   :config (progn   (turn-on-auto-fill)
                    (turn-on-flyspell)
                    (turn-on-reftex)
@@ -71,8 +68,6 @@
   (setq org-ref-bibliography-notes "~/org/notes/bibliography.org")
   (setq org-ref-default-bibliography '("~/Dropbox/dgn/Papers/refs.bib"))
   (setq org-ref-pdf-directory "~/Documents/bibtex-pdf"))
-
-
 
 
 ;;;;; ORG-SETTINGS:

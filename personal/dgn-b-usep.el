@@ -1,6 +1,7 @@
 ;;; dgn-usep.el --- Package configuration with J. Wiegley's use-package macro.
-
 ;;; Requires
+
+;;;  Code:
 (eval-when-compile
   (require 'use-package))
 (require 'bind-key)
@@ -79,8 +80,8 @@
   :load-path "~/.emacs.d/elisp/predictive"
   :init (setq predictive-auto-learn t)
   (setq predictive-use-buffer-local-dict t)
-  (setq predictive-fuzzy-completion t)
-  :defer 25
+  (setq predictive-fuzzy-completion nil)
+  :defer 10
   :config (predictive-mode t))
 
 ;; Company mode is pissing me off. I'm going to try to set up AC to my liking. It should have a spot here anyway.
@@ -141,11 +142,11 @@
   :diminish helm-mode
   :init (use-package helm-swoop :ensure t)
   :bind (("C-x C-f"   . helm-find-files)
-        ("M-x"        . helm-M-x)
-        ("C-x b"      . helm-mini)
-        ("C-x C-3"    . helm-occur)
-        ("C-x C-2"    . helm-swoop)
-        ("C-c C-d"    . helm-descbinds))
+        ("M-x"             . helm-M-x)
+        ("C-c C- b"      . helm-mini)
+        ("C-x C-3"       . helm-occur)
+        ("C-x C-2"       . helm-swoop)
+        ("C-c C-d"       . helm-descbinds))
   :config
    (progn
     (require 'helm-config)
@@ -260,10 +261,10 @@
 ;  :if window-system
 ;  :init (add-hook 'after-init-hook 'server-start t) (add-hook 'after-init-hook 'edit-server-start t))
 
-;;    solarized theme
-(use-package solarized
-  :load-path "~/.emacs.d/elisp/solarized-emacs/"
-  :defer t)
+;;    dgn-solarized theme
+;(use-package solarized
+  ;:load-path "~/.emacs.d/elisp"
+  ;:init (load "/Users/dustinneuman/.emacs.d/elisp/DGN-Solarized-theme.el"))
 
 ;;    deft
 (use-package deft
@@ -336,8 +337,8 @@
 (use-package zenburn :disabled t  :ensure t    :defer t :init (load-theme 'zenburn 'no-confirm))
 ;(use-package server                            :init (server-mode) :diminish server-buffer-clients)
 (use-package fancy-battery        :ensure t    :init   (fancy-battery-mode))
-(use-package guide-key            :ensure t    :init (setq guide-key/guide-key-sequence t guide-key/idle-delay 0.7) :config (guide-key-mode 1))
-(use-package nyan-mode            :ensure t    :config (nyan-mode))
+(use-package guide-key            :ensure t    :init (setq guide-key/guide-key-sequence t guide-key/idle-delay 0.7) :config (guide-key-mode nil))
+(use-package nyan-mode            :ensure t     :init (nyan-mode nil))
 (use-package icicles              :ensure t    :config (icicle-mode t))
 (use-package golden-ratio         :ensure t    :config (golden-ratio-mode t))
 (use-package pretty-mode          :ensure t    :config (progn (global-pretty-mode t)))
@@ -348,7 +349,7 @@
 (use-package pretty-lambdada      :ensure t    :config (progn (global-pretty-lambda-mode t)))
 (use-package pretty-symbols       :ensure t    :config (progn (global-prettify-symbols-mode t)))
 (use-package uniquify                          :config (setq uniquify-buffer-name-style 'forward))
-(use-package guide-key-tip        :ensure t    :config (setq guide-key-tip/enabled t))
+(use-package guide-key-tip        :ensure t    :config (setq guide-key-tip/enabled nil))
 (use-package magit                :ensure t    :defer t :init (setq magit-last-seen-setup-instructions "1.4.0") (setq magit-use-overlays nil))
 (use-package visual-regexp        :ensure t    :bind (("C-c r" . vr/query-replace) ("C-c R" . vr/replace)))
 (use-package hl-line              :ensure t    :init (global-hl-line-mode nil))
@@ -375,7 +376,7 @@
 
 ;;    auctex
 (use-package tex-site
-  :load-path "/Users/dustinneuman/.emacs.d/.cask/24.5.1/elpa/auctex-11.88.6/"
+  :load-path "/Users/dustinneuman/.emacs.d/.cask/24.5.1/elpa/auctex-11.88.7/"
   :ensure auctex
   :defer t
                                         ;:commands (latex-mode LaTeX-mode plain-tex-mode)

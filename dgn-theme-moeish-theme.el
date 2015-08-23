@@ -2,17 +2,16 @@
   "Created 2015-08-03.")
 
 (custom-theme-set-variables
- 'dgn-theme-moeish
- '(font-latex-match-biblatex-keywords nil))
+ 'dgn-theme-moeish)
 
 (custom-theme-set-faces
  'dgn-theme-moeish
- '(default ((t (:inherit nil :stipple nil :background "#303030" :foreground "#c6c6c6" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Myriad Pro"))))
+ '(default ((t (:inherit nil :stipple nil :background "#292929" :foreground "#c6c6c6" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Myriad Pro"))))
  '(cursor ((((class color) (min-colors 89)) (:background "#c6c6c6"))))
  '(fixed-pitch ((t (:family "Monospace"))))
  '(variable-pitch ((t (:family "Sans Serif"))))
  '(escape-glyph ((((class color) (min-colors 89)) (:foreground "#c4a000"))))
- '(minibuffer-prompt ((t (:background "azure" :foreground "#4e4e4e" :box (:line-width 2 :color "grey75" :style released-button) :weight bold :height 1.2 :family "Symbola Regular"))))
+ '(minibuffer-prompt ((t (:background "#4e4e4e" :foreground "azure" :box (:line-width 2 :color "grey75" :style released-button) :weight bold :height 1.2 :family "Symbola Regular"))))
  '(highlight ((t (:foreground "gray99" :background "#4e4e4e"))))
  '(region ((t (:background "#303130" :foreground "Magenta"))))
  '(shadow ((((class color grayscale) (min-colors 88) (background light)) (:foreground "grey50")) (((class color grayscale) (min-colors 88) (background dark)) (:foreground "grey70")) (((class color) (min-colors 8) (background light)) (:foreground "green")) (((class color) (min-colors 8) (background dark)) (:foreground "yellow"))))

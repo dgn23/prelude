@@ -64,7 +64,7 @@
 
 ;;    preview
 (use-package preview
-  :load-path "~/.emacs.d/.cask/24.5.1/elpa/auctex-11.88.6/preview.el"
+  :load-path "~/.emacs.d/.cask/24.5.1/elpa/auctex-11.88.7/preview.el"
   :ensure auctex
   :commands LaTeX-preview-setup
   :init

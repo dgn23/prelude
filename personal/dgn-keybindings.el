@@ -10,12 +10,9 @@
 (global-set-key [wheel-left] 'next-line)
 (global-set-key [double-wheel-left] 'next-line)
 
-;; Common Keybindings and Idiosyncratic Preferences
-
-
-
 ;;; OS X Tweak - CUA-style copy region is super-c (i.e., fn-c)
-(setq ns-function-modifier 'super)
+(if (equal system-type 'darwin)
+    (setq NS-function-modifier 'super))
 
 ;;;       DGN/TOGGLE-MAP SET-UP
 ;; Via: http://endlessparentheses.com/the-toggle-map-and-wizardry.html
@@ -30,13 +27,17 @@
 (define-key dgn/toggle-map "q" 'toggle-debug-on-quit)
 (define-key dgn/toggle-map "r" 'read-only-mode)
 (define-key dgn/toggle-map "h" 'hl-line-mode)
-(define-key dgn/toggle-map "v" #'dgn/turn-on-viewing-mode)
-(define-key dgn/toggle-map "n" #'dgn/narrow-or-widen-dwim)
 (define-key dgn/toggle-map "w" 'whitespace-mode)
+;;(define-key dgn/toggle-map "v" #'dgn/turn-on-viewing-mode)
+;;(define-key dgn/toggle-map "n" #'dgn/narrow-or-widen-dwim)
+
+;; Other and Misc
 (global-set-key (kbd "C-x +") 'balance-windows-area)
 (global-set-key (kbd "C-M-h") 'backward-kill-word)
 (global-set-key (kbd "C-x C-m") 'helm-M-x)
 (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
+(global-set-key (kbd "C-c C-b") 'helm-mini)
+(global-set-key (kbd "C-c C-,") 'ispell-word)
 
-
-;;; dgn-k-keys.el ends here.
+(provide 'DGN-keybindings)
+;;; dgn-keybindings.el ends here

@@ -14,18 +14,10 @@
 ;; Cask/Pallet
 
 (require 'cl)
-(require 'cask "/usr/local/Cellar/cask/0.7.2/cask.el")
+(require 'cask "/usr/local/Cellar/cask/0.7.2_1/cask.el")
 (cask-initialize)
 (require 'pallet)
 (pallet-mode t)
-
-(require 'package)
-(setq package-enable-at-startup nil)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")))
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-
 
 ;; El-Get: Basic setup for user .emacs
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
@@ -40,7 +32,12 @@
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 ;(el-get 'sync)
 
-
+(require 'package)
+(setq package-enable-at-startup nil)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.org/packages/")))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
 ;; Bootstrap `use-package'
@@ -59,7 +56,7 @@
 
 ;; PATH Setup
 (setenv  "PATH" (concat "/usr/local/bin:/usr/texbin:/usr/local/texlive/2015:~/Library/Haskell/bin" (getenv "PATH")))
-(add-to-list 'after-init-hook (exec-path-from-shell-initialize))
+;(add-to-list 'after-init-hook (exec-path-from-shell-initialize))
 
 ;; Tell emacs about the proper load-path
 (add-to-list 'load-path "~/.emacs.d/.cask/24.5.1/bootstrap")
@@ -68,7 +65,7 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/externals")
 (add-to-list 'load-path "~/.emacs.d/predictive")
 (add-to-list 'load-path "~/.emacs.d/elisp/solarized-emacs")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized")
+;;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized")
 
 ;; Trackpad scrolling -- Trackpad scrolling will be left in DGN-keybindings.el as well (at least
 ;; until I figure out whether this works)
