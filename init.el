@@ -1,98 +1,70 @@
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-;   (package-initialize) ;; KEEP EYE ON ME!
-
-;;; init.el --- Prelude's configuration entry point.
-;;
-;; Copyright (c) 2011 Bozhidar Batsov
-;;
-;; Author: Bozhidar Batsov <bozhidar@batsov.com>
-;; URL: http://batsov.com/prelude
-;; Version: 1.0.0
-;; Keywords: convenience
-
-;; This file is not part of GNU Emacs.
-
-;;; Commentary:
-
-;; This file simply sets up the default load path and requires
-;; the various modules defined within Emacs Prelude.
-
-;;; License:
-
-;; This program is free software; you can redistribute it and/or
-;; modify it under the terms of the GNU General Public License
-;; as published by the Free Software Foundation; either version 3
-;; of the License, or (at your option) any later version.
-;;
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-;;
-;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs; see the file COPYING.  If not, write to the
-;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
-;; Boston, MA 02110-1301, USA.
-
-;;; Testing this homebrew path issue thingy and reversing order in preload
+;;; Emacs Starter-Kit for the Humanities:;;;
+;;; :::::::::::::::::::::::::::::::::::::;;;
+;;; "Where all the magic begins"....
+;;; See ESKH.org for Documentation
+;;; ESKH is based on (shameless stolen from) 
+;;; + Kieren Healy's Emacs Social-Science Starter Kit [http://github.com/kjh/]
+;;; + The ESSK itself is based on [technomancy] and [Phil H.] [FIXME]
+;;; + Boris Batsov's Prelude [http://github.com/bbatsov/prelude]
+;;; Special mention also to John Wiegley [http://github.com/jwiegley] who created many 
+;;; of the libraries and packages essential to this kit. 
 
 (let ((default-directory "/usr/local/share/emacs/site-lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
 
-;;; Code:
-(defvar current-user
-      (getenv
-       (if (equal system-type 'windows-nt) "USERNAME" "USER")))
-
-(message "Prelude is powering up... Be patient, Master %s!" current-user)
-
-(when (version< emacs-version "24.1")
-  (error "Prelude requires at least GNU Emacs 24.1, but you're running %s" emacs-version))
-
-;; Always load newest byte code
-(setq load-prefer-newer t)
-
-(defvar prelude-dir (file-name-directory load-file-name)
-  "The root dir of the Emacs Prelude distribution.")
-(defvar prelude-core-dir (expand-file-name "core" prelude-dir)
-  "The home of Prelude's core functionality.")
-(defvar prelude-modules-dir (expand-file-name  "modules" prelude-dir)
-  "This directory houses all of the built-in Prelude modules.")
-(defvar prelude-personal-dir (expand-file-name "personal" prelude-dir)
-  "This directory is for your personal configuration.
-
-Users of Emacs Prelude are encouraged to keep their personal configuration
-changes in this directory.  All Emacs Lisp files there are loaded automatically
-by Prelude.")
-(defvar prelude-personal-preload-dir (expand-file-name "preload" prelude-personal-dir)
-  "This directory is for your personal configuration, that you want loaded before Prelude.")
-(defvar prelude-vendor-dir (expand-file-name "vendor" prelude-dir)
-  "This directory houses packages that are not yet available in ELPA (or MELPA).")
-(defvar prelude-savefile-dir (expand-file-name "savefile" prelude-dir)
+(defvar emacs-dir (file-name-directory load-file-name)
+  "Set emacs root directory.")                  
+(defvar lib-dir (expand-file-name "library" emacs-dir)   		       ;; emacs-dir/lib
+  "The core library for local emacs functionality")
+(defvar modules-dir (expand-file-name  "modules" emacs-dir)        ;; emacs-dir/modules
+  "Modules are interactive and need not be loaded every time at start up.")
+(defvar personal-dir (expand-file-name "personal" emacs-dir)       ;; emacs-dir/personal
+  "This directory is for additional personal configuration\n 
+  and keeping certain packages separate from cask.\n 
+  All folders and subfolders will be loaded.")
+(defvar el-get-dir (expand-file-name "el-get" emacs-dir)
+	"Folder containing el-get packages and recipes.")
+(defvar savefile-dir (expand-file-name "savefile" emacs-dir) ;;emacs-dir/savefile
   "This folder stores all the automatically generated save/history-files.")
-(defvar prelude-modules-file (expand-file-name "prelude-modules.el" prelude-dir)
-  "This files contains a list of modules that will be loaded by Prelude.")
 
-(unless (file-exists-p prelude-savefile-dir)
-  (make-directory prelude-savefile-dir))
 
-(defun prelude-add-subfolders-to-load-path (parent-dir)
+;; Create the library, modules, personal, and savefile directories
+;; if they don't already exist
+
+;(unless (file-exists-p savefile-dir)
+;  (make-directory emacs-savefile-dir))
+;(unless (file-exists-p lib-dir)
+;	(make-directory lib-dir))
+;(unless (file-exists-p modules-dir)
+;	(make-directory modules-dir))
+;(unless (file-exists-p personal-dir)
+;	(make-directory personal-dir))
+
+(defun add-subfolders-to-load-path (parent-dir)
  "Add all level PARENT-DIR subdirs to the `load-path'."
  (dolist (f (directory-files parent-dir))
    (let ((name (expand-file-name f parent-dir)))
      (when (and (file-directory-p name)
                 (not (string-prefix-p "." f)))
        (add-to-list 'load-path name)
-       (prelude-add-subfolders-to-load-path name)))))
+       (add-subfolders-to-load-path name)))))
 
-;; add Prelude's directories to Emacs's `load-path'
-(add-to-list 'load-path prelude-core-dir)
-(add-to-list 'load-path prelude-modules-dir)
-(add-to-list 'load-path prelude-vendor-dir)
-(prelude-add-subfolders-to-load-path prelude-vendor-dir)
+;; add emacs directories to Emacs's `load-path'
+(add-to-list 'load-path lib-dir) ;; to add a file to load-path, add its containing directory.
+(add-to-list 'load-path modules-dir)
+(add-to-list 'load-path personal-dir)
+(add-subfolders-to-load-path personal-dir)
+(add-subfolders-to-load-path lib-dir)
+(add-subfolders-to-load-path modules-dir)
+
+;; Tell emacs about the proper load-path
+(add-to-list 'load-path "~/.emacs.d/.cask/")
+(add-to-list 'load-path "~/.emacs.d/.cask/24.5.1/bootstrap")
+(add-to-list 'load-path "~/.emacs.d/.cask/24.5.1/elpa")
+(add-to-list 'load-path "~/.emacs.d/predictive")
+
+;; config changes made through the customize UI will be stored here
+(setq custom-file (expand-file-name "custom.el" personal-dir))
 
 ;; reduce the frequency of garbage collection by making it happen on
 ;; each 50MB of allocated data (the default is on every 0.76MB)
@@ -100,47 +72,86 @@ by Prelude.")
 
 ;; warn when opening files bigger than 100MB
 (setq large-file-warning-threshold 100000000)
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq load-prefer-newer t)
+(setq debug-on-error nil)
 
-;; preload the personal settings from `prelude-personal-preload-dir'
-(when (file-exists-p prelude-personal-preload-dir)
-  (message "Loading personal configuration files in %s..." prelude-personal-preload-dir)
-  (mapc 'load (directory-files prelude-personal-preload-dir 't "^[^#].*el$")))
-
-(message "Loading Prelude's core...")
-
-;; the core stuff
-(require 'prelude-packages)
-(require 'prelude-custom)  ;; Needs to be loaded before core, editor and ui
-(require 'prelude-ui)
-(require 'prelude-core)
-(require 'prelude-mode)
-(require 'prelude-editor)
-(require 'prelude-global-keybindings)
-
-;; OSX specific settings
+;; setting paths for OS X (homebrew)
 (when (eq system-type 'darwin)
-  (require 'prelude-osx))
+  (setenv "PATH"
+          (concat
+           "/usr/local/bin" ":"
+           "/usr/local/sbin" ":"
+           "~/.rvm/bin" ":"
+           "/usr/texbin/" ":"
+           "/usr/local/texlive/2011/bin/x86_64-darwin" ":"
+           (getenv "PATH")))
+  (setq exec-path
+        '("/usr/local/bin"
+          "/usr/local/sbin"
+          "~/.rvm/bin"
+          "/usr/texbin/"
+          "/usr/local/texlive/2015/bin/x86_64-darwin"
+          "/usr/bin"
+          "/bin"
+          "/usr/sbin"
+          "/sbin"
+          "/usr/X11/bin"
+          "/usr/local/Library/Contributions/examples")))
 
-(message "Loading Prelude's modules...")
+(require 'package)
+(setq package-enable-at-startup nil)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.org/packages/")
+                         ("org" . "http://orgmode.org/elpa/")))
 
-;; the modules
-(if (file-exists-p prelude-modules-file)
-    (load prelude-modules-file)
-  (message "Missing modules file %s" prelude-modules-file)
-  (message "You can get started by copying the bundled example file"))
+;; El-Get: Basic setup for user .emacs
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
-;; config changes made through the customize UI will be store here
-(setq custom-file (expand-file-name "custom.el" prelude-personal-dir))
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
 
-;; load the personal settings (this includes `custom-file')
-(when (file-exists-p prelude-personal-dir)
-  (message "Loading personal configuration files in %s..." prelude-personal-dir)
-  (mapc 'load (directory-files prelude-personal-dir 't "^[^#].*el$")))
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+;(el-get 'sync)
 
-(message "Prelude is ready to do thy bidding, Master %s!" current-user)
 
-(prelude-eval-after-init
- ;; greet the use with some useful tip
- (run-at-time 5 nil 'prelude-tip-of-the-day))
 
-;;; init.el ends here
+;; Package Mode Setup
+
+(package-initialize)
+(require 'use-package)
+(require 'bind-key)
+(require 'diminish)
+(require 'cl-lib)
+(require 'uniquify)
+(require 'exec-path-from-shell)
+
+;; Cask/Pallet
+
+(require 'cl)
+(require 'cask "/usr/local/Cellar/cask/0.7.2_1/cask.el")
+(cask-initialize)
+(require 'pallet)
+(pallet-mode t)
+
+
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(unless (package-installed-p 'pallet)
+  (package-refresh-contents)
+  (package-install 'pallet))
+
+(load-file "~/.emacs.d/library/default-settings-lib.el")
+(load-file "~/.emacs.d/library/package-library.el")
+(load-file "~/.emacs.d/modules/dgn-c-org.el")
+(load-file "~/.emacs.d/modules/dgn-g-gnus.el")
+(load-file "~/.emacs.d/personal/custom.el")
+
+(message "emacs is up and running!")
