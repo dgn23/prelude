@@ -1,0 +1,6 @@
+
+/Users/dustinneuman/.emacs.d/personal/prelude-config.el,27
+(defun fullscreen 70,2397
+
+/Users/dustinneuman/.emacs.d/personal/org-setup.el,30
+(defun my/org-mode-hook 6,82

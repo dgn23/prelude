@@ -70,6 +70,7 @@
   :defer 25
   :config (predictive-mode t))
 
+;; Helm refactored
 (use-package helm
   :bind (("C-x C-f" . helm-find-files)
 	 ("M-x"     . helm-M-x)
@@ -92,45 +93,6 @@
 		helm-recentf-fuzzy-match t
 		helm-semantic-fuzzy-match t
 		helm-mode 1))
-
-	  
-
-;;   Helm
-;; (use-package helm
-;;   :ensure t
-;;   :diminish helm-mode
-;; ;  :init (use-package helm-swoop :ensure t)
-;;   :bind (("C-x C-f"   . helm-find-files)
-;;         ("M-x"        . helm-M-x)
-;;         ("C-x b"      . helm-mini)
-;;         ("C-x C-3"    . helm-occur)
-;;         ("C-x C-2"    . helm-swoop)
-;;         ("C-c C-d"    . helm-descbinds))
-;;   :config
-;;    (progn
-;;     (require 'helm-config)
-;;     (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-;;     (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
-;;     (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
-;;     (when (executable-find "curl")
-;;       (setq helm-google-suggest-use-curl-p              t))
-;;     (when (executable-find "ack")
-;;       (setq helm-grep-default-command "ack -Hn --no-group --no-color %e %p %f"
-;;             helm-grep-default-recurse-command "ack -H --no-group --no-color %e %p %f"))
-;;     (setq helm-split-window-in-side-p t)
-;;     (setq helm-move-to-line-cycle-in-source t) 
-;;     helm-ff-search-library-in-sexp t)
-   
-;;       helm-ff-skip-boring-files t) (setq
-;;       helm-ff-file-name-history-use-recentf t) (setq
-;;       helm-scroll-amount 8) (setq helm-quick-update t) (setq
-;;       helm-M-x-fuzzy-match t) (setq helm-apropos-fuzzy-match t) (setq
-;;       helm-buffers-fuzzy-matching t) (setq helm-imenu-fuzzy-match t)
-;;       (setq helm-locate-fuzzy-match t) (setq helm-recentf-fuzzy-match
-;;       t) (setq helm-semantic-fuzzy-match t) (add-to-list
-;;       'helm-sources-using-default-as-input 'helm-source-man-pages)
-;;       (helm-mode)))
-
 
 ;;     ibuffer <-- fix spacing!
 (use-package ibuffer
@@ -188,21 +150,21 @@
                       (unless (eq ibuffer-sorting-mode 'alphabetic)
                         (ibuffer-do-sort-by-alphabetic)))))
 
-;;    ispell <-- Set up first!
+;;    ispell
 (use-package ispell
   :init (progn (setq ispell-program-name "/usr/local/bin/aspell" )
                (setq ispell-personal-dictionary "~/.aspell.en.pws")
                (setq ispell-silently-savep t)))
 
 
-;; (use-package smex :defer t
-;;   :init (global-set-key (kbd "M-X") 'smex))
+(use-package smex :defer 5
+   :init (global-set-key (kbd "M-X") 'smex))
 (use-package helm-descbinds       
   ;:ensure helm
   :config (helm-descbinds-mode))
 (use-package helm-buffers         
   ;; :ensure helm
-  :defer t :config (setq helm-buffers-fuzzy-matching t))
+  :config (setq helm-buffers-fuzzy-matching t))
 (use-package helm-descbinds       
   ;; :ensure helm
   :init (helm-descbinds-mode 1))
@@ -211,8 +173,6 @@
   :bind ("C-c h 8" . helm-unicode))
 (use-package flycheck             
   :ensure t    :defer t)
-;; (use-package auto-complete-auctex 
-;;   :ensure t    :defer t)
 (use-package icicles              
   :disabled t   :init (icicle-mode nil))
 (use-package golden-ratio         
@@ -237,13 +197,12 @@
 (use-package hl-line              
   :ensure t    :init (global-hl-line-mode nil))
 (use-package paradox              
-  :ensure t    :init (progn (setq paradox-github-token  "05f357727e2b27c83410fcc63fc9b1a9a4afc651"))  
+  :ensure t    :init (progn (setq paradox-github-token  "c85391996956a3bbc7fe049a4ea2663f05806153"))
   :bind (("C-c x p" . paradox-list-packages) ("C-c x P" . package-list-packages-no-fetch)))
 (use-package smooth-scrolling     
   :ensure t    :config (setq smooth-scroll-margin 4))
 (use-package markdown-mode        
   :ensure t :mode (("\\.md\\'" . markdown-mode) ("\\.mmd\\'" . markdown-mode) ("\\.markdown\\'" . markdown-mode)))
-
 (use-package undo-tree            
   :ensure t :config (progn (setq undo-tree-mode-lighter nil) (setq global-undo-tree-mode nil)))
 (use-package fixmee               
@@ -396,11 +355,7 @@
  (setq LaTeX-math-menu-unicode t)
  (setq LaTeX-mode-hook
    (quote
-    (flyspell-mode company-auctex-init turn-on-reftex latex-unicode-simplified
-                   (lambda nil
-                     (run-hooks
-                      (quote prelude-latex-mode-hook)))
-                   er/add-latex-mode-expansions LaTeX-preview-setup latex-extra-mode)))
+    (flyspell-mode company-auctex-init turn-on-reftex latex-unicode-simplified LaTeX-preview-setup latex-extra-mode)))
  (setq
    TeX-check-path
    (quote

@@ -1,5 +1,5 @@
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
+;; Old Custom Settings.el
+@@ -3,265 +3,41 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
@@ -37,6 +37,21 @@
    (quote
     (basic partial-completion emacs22 initials substring)))
  '(custom-enabled-themes (quote (moe-dark moe-light solarized-dark)))
+ '(ac-dictionary-directories
+   (quote
+    ("/Users/dustinneuman/.emacs.d/elpa/auto-complete-20150618.1949/dict" "/Users/dustinneuman/dicts")))
+ '(ac-user-dictionary (quote (Users/dustinneuman/dicts/LocalDictionary)))
+ '(auth-source-protocols
+   (quote
+    ((imap "imap" "imaps" "143" "993")
+     (pop3 "pop3" "pop" "pop3s" "110" "995")
+     (ssh "ssh" "22")
+     (sftp "sftp" "115")
+     (smtp "smtp" "25" "587"))))
+ '(blink-cursor-blinks 20)
+ '(completion-search-distance 0)
+ '(cursor-type (quote box))
+ '(custom-enabled-themes (quote (sanityinc-solarized-dark)))
  '(custom-safe-themes
    (quote
     ("eafda598b275a9d68cc1fbe1689925f503cab719ee16be23b10a9f2cc5872069" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "419637b7a8c9cb43f273980f0c9879c0cbadace6b38efac0281e031772c84eb2" "08c91195acc69d868f5ef1ac91f48514674e6e326e9dba999abf980438821639" "beeb5ac6b65fcccfe434071d4624ff0308b5968bf2f0c01b567d212bcaf66054" "133222702a3c75d16ea9c50743f66b987a7209fb8b964f2c0938a816a83379a0" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "fc6ee2cdf073d6f21a9b96dd59d1395c736cab7dc9d53dc9e97a7cf55295775e" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
@@ -46,6 +61,7 @@
  '(display-battery-mode nil)
  '(display-time-mode nil)
  '(doc-view-continuous t)
+    ("3b24f986084001ae46aa29ca791d2bc7f005c5c939646d2b800143526ab4d323" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "a0feb1322de9e26a4d209d1cfa236deaf64662bb604fa513cca6a057ddf0ef64" "a6289444757a2ccc56e3cbfefd9c93d9570788847e1f04c16de81483790a1edf" "804dd83b709ca22fa6286bee885b8175b7e11e6d941c729ab299aefaf5e20041" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
  '(dynamic-completion-mode t)
  '(epa-global-mail-mode t)
  '(evil-snipe-mode nil)
@@ -121,6 +137,8 @@
    "/Users/dustinneuman/org/archive/archive.org::\"* From %s\"")
  '(org-bullets-bullet-list (quote (" " "" "◉" "○" "" "" "✿" "✸" "")))
  '(org-capture-templates
+ '(el-get-is-lazy t)
+ '(package-selected-packages
    (quote
     (("t" "Todo" entry
       (file "~/org/agenda/gtd.org")
@@ -166,6 +184,7 @@
      ("noexport" . 110))))
  '(org-wikinodes-scope (quote directory))
  '(package-selected-packages (quote (s)) t)
+    (company-ghc ebal haskell-emacs haskell-emacs-base haskell-emacs-text haskell-snippets hayoo helm-hoogle hi2 shm aurora-theme base16-theme boron-theme cycle-themes deep-thought-theme fish-mode flatland-black-theme flatland-theme flatui-theme helm-dash helm-mu helm-themes helm-wordnet hipster-theme lavender-theme lenlen-theme leuven-theme load-theme-buffer-local material-theme per-buffer-theme wanderlust with-editor zenburn-theme alect-themes sequences bog bookmark+ browse-kill-ring calfw cdlatex cl-format cl-generic cl-lib color-identifiers-mode color-theme-buffer-local color-theme-cobalt color-theme-emacs-revert-theme color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow color-theme-solarized color-theme-tangotango color-theme-twilight color-theme-vim-insert-mode color-theme-wombat color-theme-x color-theme-zenburn command-t company-auctex company-math company-nixos-options company-statistics concurrent corral counsel dakrone-theme darcula-theme darktooth-theme dash dash-at-point dash-functional evil-surround sly smart-mode-line smart-mode-line-powerline-theme smex spacegray-theme annotate anzu artbollocks-mode auctex-latexmk auctex-lua auto-complete-auctex auto-package-update autumn-light-theme avy-zap ac-ispell ac-math ac-sly ace-flyspell ace-isearch ace-jump-buffer ace-jump-helm-line ace-jump-mode ace-jump-zap ace-window achievements afternoon-theme ag fontawesome helm-swoop auto-complete use-package pallet exec-path-from-shell)))
  '(paradox-automatically-star nil)
  '(paradox-display-buffer-name t)
  '(paradox-display-download-count t)
@@ -173,10 +192,12 @@
  '(paradox-lines-per-entry 2)
  '(paradox-spinner-type (quote progress-bar))
  '(pdf-virtual-global-minor-mode t)
+ '(paradox-github-token "c85391996956a3bbc7fe049a4ea2663f05806153")
  '(predictive-add-to-dict-ask nil)
  '(predictive-auto-add-to-dict t)
  '(predictive-auto-complete t)
  '(predictive-completion-speed 0.25)
+ '(predictive-completion-speed 0.5)
  '(predictive-fuzzy-completion nil)
  '(predictive-latex-docclass-alist (quote (("article" . latex-dict))))
  '(predictive-latex-electric-environments t)
@@ -204,6 +225,7 @@
  '(reftex-extra-bindings t)
  '(reftex-highlight-selection (quote both))
  '(safe-local-variable-values
+ '(yas-snippet-dirs
    (quote
     ((eval when
            (and
@@ -262,11 +284,12 @@
  '(writeroom-mode-line t)
  '(writeroom-restore-window-config t)
  '(writeroom-width 90))
+    ("/Users/dustinneuman/.emacs.d/elpa/common-lisp-snippets-20150603.944/snippets" "~/.emacs.d/snippets" "/Users/dustinneuman/.emacs.d/elpa/haskell-snippets-20150612.1239/snippets" "/Users/dustinneuman/.emacs.d/elpa/django-snippets-20131229.811/snippets")) nil (yasnippet))
+ '(yas-snippet-revival nil))
 
 ;;
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
+@@ -270,12 +46,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
@@ -279,3 +302,4 @@
  '(git-gutter:unchanged ((t (:background "dodgerblue"))))
  '(hl-line ((t (:background "aquamarine3" :foreground "black"))))
  '(hl-sentence-face ((t (:weight semi-bold)))))
+ )

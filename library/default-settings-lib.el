@@ -1,8 +1,8 @@
 ;; Library Settings
 
 (setq inhibit-startup-screen t          ;; remove startup screen
-      scroll-conservatively 101         ;; never recenter point when scrolling
-      initial-scratch-message nil       ;; start with an empty scratch buffer
+      scroll-conservatively 101         ;; never recenter point when scrolling 
+     initial-scratch-message nil       ;; start with an empty scratch buffer
       require-final-newline nil         ;; don't force new line at end of file
       help-window-select t              ;; select help buffer when opened
       debug-on-error nil                ;; show backtrace on error

@@ -64,7 +64,7 @@
 (add-to-list 'load-path "~/.emacs.d/themes")
 (add-to-list 'load-path "~/.emacs.d/elisp/externals")
 (add-to-list 'load-path "~/.emacs.d/predictive")
-(add-to-list 'load-path "~/.emacs.d/elisp/solarized-emacs")
+;;(add-to-list 'load-path "~/.emacs.d/elisp/solarized-emacs")
 ;;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized")
 
 ;; Trackpad scrolling -- Trackpad scrolling will be left in DGN-keybindings.el as well (at least
