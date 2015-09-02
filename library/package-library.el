@@ -6,6 +6,13 @@
 (require 'bind-key)
 (require 'diminish)
 
+
+;; yasnippets
+(use-package yasnippet
+  :load-path "/Users/dustinneuman/.emacs.d/.cask/25.0.50.1/elpa/yasnippet-20150811.1222"
+  :init (setq yas-snippet-dirs '("/Users/dustinneuman/.emacs.d/snippets"
+			  "/Users/dustinneuman/.emacs.d/.cask/25.0.50.1/elpa/yasnippet-20150811.1222")))
+
 (use-package auto-complete
   :load-path "/Users/dustinneuman/.emacs.d/.cask/24.5.1/elpa/" ; FIX-MEE!
   :ensure t

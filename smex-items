@@ -4,10 +4,10 @@
  ag
  cd
  nm
- w3
  wl
  5x5
  ack
+ vm
 )
 
 ;; ----- smex-data -----
