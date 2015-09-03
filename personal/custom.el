@@ -77,7 +77,19 @@ static char *gnus-pointer[] = {
  '(lisp-mode-hook
    (quote
     (completion-lisp-mode-hook slime-lisp-mode-hook sly-editing-mode)))
+ '(message-send-mail-function (quote message-smtpmail-send-it))
  '(mode-icons-mode t)
+ '(mu4e-attachment-dir "/Users/dustinneuman/Downloads")
+ '(mu4e-auto-retrieve-keys t)
+ '(mu4e-compose-auto-include-date t)
+ '(mu4e-drafts-folder "/mu4e/drafts")
+ '(mu4e-refile-folder "/mu4e/archive")
+ '(mu4e-sent-folder "/mu4e/sent")
+ '(mu4e-trash-folder "/mu4e/trash")
+ '(mu4e-use-fancy-chars t)
+ '(mu4e-user-mail-address-list
+   (quote
+    ("dustin.neuman@gmail.com" "dneuman@berkeley.edu" "dustin@dustinneuman.com")))
  '(org-trello-current-prefix-keybinding "C-c o")
  '(osx-pseudo-daemon-mode nil)
  '(package-selected-packages
