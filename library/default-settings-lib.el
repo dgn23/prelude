@@ -12,31 +12,29 @@
                                                "~/.emacs-backups/") t))
       vc-make-backup-files t)
 
-(setq-default cursor-type 'bar)
-
+(setq-default cursor-type 'box)
+(set-cursor-color "cyan")
 (fset 'yes-or-no-p 'y-or-n-p)
-
-(auto-image-file-mode 1)        
-(auto-compression-mode 1)       
+(auto-image-file-mode 1)   
+(auto-compression-mode 1)
 
 ;;; basic appearance
-(line-number-mode 1)            
-(column-number-mode 1)          
+(line-number-mode 1)       
+(column-number-mode 1)
 (display-battery-mode 1)
 (display-time-mode 1)
 
 
-(if (eq system-type 'darwin)    
-    (menu-bar-mode 1)           
-  	(menu-bar-mode -1))           
+(if (eq system-type 'darwin)
+    (setq NS-function-modifier 'super))
 
 (when window-system
   	  (scroll-bar-mode -1)          
   	  (toggle-scroll-bar -1)
-      (tool-bar-mode -1))         
+      (tool-bar-mode -1))
 
-(blink-cursor-mode 1)         
-(show-paren-mode 1)         
+(show-paren-mode 1)   
+
 (setq frame-title-format
       '((:eval (if (buffer-file-name)
                    (abbreviate-file-name (buffer-file-name))
@@ -73,15 +71,15 @@
 (global-set-key [double-wheel-left] 'next-line)
 
 ;;; OS X Tweak - CUA-style copy region is super-c (i.e., fn-c)
-(if (equal system-type 'darwin)
+(if (eq system-type 'darwin)
     (setq NS-function-modifier 'super))
 
 ;;;       DGN/TOGGLE-MAP SET-UP
 ;; Via: http://endlessparentheses.com/the-toggle-map-and-wizardry.html
-(define-prefix-command 'dgn/toggle-map)
 ;; The manual recommends C-c for user keys, but C-x t is
 ;; always free, whereas C-c t is used by some modes.
-(define-key ctl-x-map "t" 'dgn/toggle-map)
+(define-prefix-command 'dgn/toggle-map)
+(define-key ctl-x-map      "t" 'dgn/toggle-map)
 (define-key dgn/toggle-map "g" 'golden-ratio-mode)
 (define-key dgn/toggle-map "d" 'toggle-debug-on-error)
 (define-key dgn/toggle-map "f" 'auto-fill-mode)
@@ -89,9 +87,12 @@
 (define-key dgn/toggle-map "q" 'toggle-debug-on-quit)
 (define-key dgn/toggle-map "r" 'read-only-mode)
 (define-key dgn/toggle-map "h" 'hl-line-mode)
+(define-key dgn/toggle-map "H" 'highline-mode)
 (define-key dgn/toggle-map "w" 'whitespace-mode)
 ;;(define-key dgn/toggle-map "v" #'dgn/turn-on-viewing-mode)
 ;;(define-key dgn/toggle-map "n" #'dgn/narrow-or-widen-dwim)
+;; I just realized how the hashbang works --- it calls
+;; interactive functions!
 
 ;; Other and Misc
 (global-set-key (kbd "C-x +") 'balance-windows-area)
@@ -102,3 +103,4 @@
 (global-set-key (kbd "C-c C-,") 'ispell-word)
 (global-set-key (kbd "C-+") `text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "<M-f1>") 'menu-set-font)

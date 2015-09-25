@@ -21,22 +21,21 @@
 
 (use-package mu4e
   :load-path "/usr/local/share/emacs/site-lisp/mu4e"
-  :commands mu4e
-  :init (use-package org-mu4e)
-  (setq org-auto-fill-function nil)
-  (setq mu4e-attachment-dir (expand-file-name "~/Downloads"))
-  (setq mu4e-confirm-quit nil)
-  (setq mu4e-user-mail-address-list '("dustin.neuman@gmail.com"
+  :init  (setq mu4e-attachment-dir (expand-file-name "~/Downloads"))
+         (setq mu4e-user-mail-address-list '("dustin.neuman@gmail.com"
           				"dustin@dustinneuman.com"
           				"dneuman@berkeley.edu"))
-  (setq mu4e-use-fancy-chars t)
-  (setq org-mu4e-convert-to-html t)
-  (setq mu4e-maildir (expand-file-name "~/Maildir"))
-  (setq mu4e-mu-binary "/usr/local/bin/mu")
-  (setq mu4e-headers-results-limit 1000))
+  :config (progn
+                   (setq mu4e-confirm-quit nil)
+                   (setq mu4e-use-fancy-chars t)
+                   (setq org-mu4e-convert-to-html t)
+                   (setq mu4e-maildir (expand-file-name "~/Maildir"))
+                   (setq mu4e-mu-binary "/usr/local/bin/mu")
+                   (setq mu4e-headers-results-limit 1000)))
 
 
-
+(use-package org-mu4e
+  :init (setq org-mu4e-convert-to-html t))
 
     ;; (defun dgn-mu4e-archive-gmail (msg)
     ;;   "Remove label '\\Inbox' to archive MSG." ;;'\Inbox' to '\\Inbox'

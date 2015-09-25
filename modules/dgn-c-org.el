@@ -3,44 +3,21 @@
 ;;; Code:
 
 ;;; Bootstrap org-mode + contrib
-(unless (package-installed-p 'org)  ;; Make sure the Org package is
-  (package-install 'org))           ;; installed, install it if not
+;; (unless (package-installed-p 'org)  ;; Make sure the Org package is
+;;  (package-install 'org))           ;; installed, install it if not
 
-(eval-when-compile
-  (require 'use-package))
+(require 'use-package)
 
 (use-package org
   :ensure t
-  :defer t
+  :defer 15
   :mode ("\\.org" . org-mode)
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture))
-  :init (setq org-directory "~/org") (setq org-agenda-files '("~/org/agenda/gtd.org"))
-  (setq org-completion-use-ido t)
-  (use-package org-bullets
-          :load-path "~/.emacs.d/.cask/24.5.1/elpa/org-bullets-20140918.1137"
-          :ensure t
-          :defer t
-          :config (progn (eval-after-load "*.org" (org-bullets-mode))))
-  (use-package org-ac
-    :load-path "~/.emacs.d/.cask/24.5.1/elpa/org-ac-20140302.413"
-    :ensure t
-    :config (progn (eval-after-load "*.org" (org-ac/setup-current-buffer))))
-  (use-package org-extension
-    :load-path "~/.emacs.d/elisp/externals/org-extension.el"
-    :defer t)
-  (use-package org-import-icalendar
-    :load-path "~/.emacs.d/elisp/externals/org-import-calendar.el"
-    :defer t
-    :init (setq org-important-icalendar-filename "~/org/agenda/ical.org"))
-  (use-package org-notmuch
-    :load-path "~/.emacs.d/elisp/externals")
-  (use-package org-index
-    :load-path "~/.emacs.d/elisp/externals/org-index.el"
-    :defer t)
-  (use-package org-wikinodes
-    :load-path "~/.emacs.d/elisp/externals/org-wikinodes.el")
+  :init (setq org-directory "~/org")
+        (setq org-agenda-files '("~/org/agenda/gtd.org"))
+	(setq org-completion-use-ido t)
   :config (progn   (turn-on-auto-fill)
                    (turn-on-flyspell)
                    (turn-on-reftex)
@@ -60,20 +37,31 @@
 ;;completion-at-point-function.
 ;; TODO ==> SET UP AUTO-COMPLETION/ACPF
 
+(use-package org-bullets
+          :load-path "~/.emacs.d/.cask/25.0.50.1/elpa/org-bullets-20140918.1137"
+          :ensure t
+          :init (eval-after-load "*.org" (org-bullets-mode)))
+
+(use-package org-ac
+  :load-path "~/.emacs.d/.cask/25.0.50.1/elpa/org-ac-20140302.413"
+  :commands org-ac/setup-current-buffer
+    :init (eval-after-load "*.org" (org-ac/setup-current-buffer)))
+
+(use-package org-wikinodes
+    :load-path "~/.emacs.d/elisp/externals/org-wikinodes.el")
 
 ;; ORG-REF
 (use-package org-ref
   :load-path "~/.emacs.d/el-get/org-ref"
-  :config (setq reftex-default-bibliography '("~/Dropbox/dgn/Papers/refs.bib"))
-  (setq org-ref-bibliography-notes "~/org/notes/bibliography.org")
-  (setq org-ref-default-bibliography '("~/Dropbox/dgn/Papers/refs.bib"))
-  (setq org-ref-pdf-directory "~/Documents/bibtex-pdf"))
-
+  :init (setq reftex-default-bibliography '("~/Dropbox/dgn/Papers/refs.bib"))
+        (setq org-ref-bibliography-notes "~/org/notes/bibliography.org")
+        (setq org-ref-default-bibliography '("~/Dropbox/dgn/Papers/refs.bib"))
+        (setq org-ref-pdf-directory "~/Documents/bibtex-pdf"))
 
 ;;;;; ORG-SETTINGS:
-(setq org-archive-location: "/Users/dustinneuman/org/archive/archive.org::\"* From %s\"")
-  (setq org-completion-use-ido t)
-  (setq org-babel-load-languages (quote ((emacs-lisp . t)
+ (setq org-archive-location: "/Users/dustinneuman/org/archive/archive.org::\"* From %s\"")
+ (setq org-completion-use-ido t)
+ (setq org-babel-load-languages (quote ((emacs-lisp . t)
                                          (latex . t)
                                          (ditaa . t)
                                          (dot . t)
@@ -84,12 +72,12 @@
                                          (clojure . t)
                                          (plantuml . t)
                                          (sh . t))))
-  (setq org-datetree-add-timestamp (quote inactive))
-  (setq org-hide-emphasis-markers t)
-  (setq org-highlight-latex-and-related (quote (latex script entities)))
-  (setq org-pretty-entities t)
-  (setq org-src-fontify-natively t)
-  (setq org-use-speed-commands t)
+ (setq org-datetree-add-timestamp (quote inactive))
+ (setq org-hide-emphasis-markers t)
+ (setq org-highlight-latex-and-related (quote (latex script entities)))
+ (setq org-pretty-entities t)
+ (setq org-src-fontify-natively t)
+ (setq org-use-speed-commands t)
  (setq org-default-notes-file "~/org/notes/notes.org")
  (setq org-ditaa-jar-path "/usr/local/bin/ditaa")
  (setq org-doing-file "~/org/agenda/doing.org")
@@ -186,35 +174,3 @@
           (lambda()
             (local-set-key (kbd "C-c w") 'org-wc-display)
             (local-set-key (kbd "C-c C-v w") 'org-wc-remove-overlays)))
-
-;; (defun my/org-mode-hook ()
-;;   (interactive)
-;;   (turn-on-auto-fill)
-;;   (turn-on-flyspell)
-;;   (turn-on-reftex)
-;;   (turn-on-cdlatex)
-;;   (when (fboundp 'my/enable-abbrev-mode)
-;;     (my/enable-abbrev-mode)))
-
-
-;(add-hook 'org-mode-hook
-;          (lambda ()
-;            (set-face-attribute 'org-level-1 t :Inherit  :foreground "DarkOliveGreen4" :weight normal :height 1.5)
-;            (set-face-attribute 'org-level-2 t :Inherit outline-2 :foreground "IndianRed4" :weight semi-light :height 1.4)
-;            (set-face-attribute 'org-level-3 t :Inherit outline-3 :foreground "MediumPurple4" :weight normal :height 1.3)
-;            (set-face-attribute 'org-level-4 t :Inherit outline-4 :foreground "OliveDrab3" :weight semi-light :height 1.2)
-;            (set-face-attribute 'org-level-5 t :Inherit outline-5 :foreground "aquamarine3" :slant italic :weight normal :height 1.1)
-;            (set-face-attribute 'org-level-6 t :Inherit outline-6 :foreground "#9a08ff")
-;            (set-face-attribute 'org-level 7 t :Inherit outline-7 :foreground "#ff4ea3")
-;            (set-face-attribute 'org-level 8 t :Inherit outline-8 :foreground "#ffd700")))
-
-
-;; Set to the location of your Org files on your local system
-
-;; Set to <your Dropbox root directory>/MobileOrg.
-(setq org-mobile-directory "~/Dropbox/MobileOrg")
-;; Set to the files (or directory of files) you want sync'd
-;; (setq org-agenda-files (quote ("~/org/agenda/agenda.org")))
-;; Set to the name of the file where new notes will be stored
-(setq org-mobile-inbox-for-pull "~/Dropbox/org/from-mobile.org")
-;; Set to the location of your Org files on your local system

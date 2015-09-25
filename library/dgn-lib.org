@@ -1,0 +1,65 @@
+#+AUTHOR: Dustin Neuman
+#+DATE: <2015-09-10>
+#+TITLE: dgn-lib.org
+
+
+* Intro
+** Purpose
+ The purpose of this document is to practice my programming skills in
+ general and my elisp skills in particular by working out how to write
+ functions that I would find useful (and/or which would be apt for
+ ESKH). Since when learning a new skill one is particularly ill-placed
+ to judge one's own performance, I think a good practice regimen would
+ be to not only try and write functions/programs that I find
+ helpful/neat/fun, but also to /re/-write programs or functions that
+ others have already worked out and then comparing the results.
+
+** Structure
+ So I want to be able to take notes from Dash etc and generally have a
+ nice lit-prog record of what I've done, hence the org doc. I'll need
+ to gussy up the options for babel export, but the idea is to every
+ now and then org-babel-tangle this file (producing, I think,
+ dgn-lib.el) and then using the lisp file exported to hook up with the
+ rest of the init gear.
+
+** Tasks
+*** TODO Gussy up options up yonder to allow for proper org-babel action. :dev:
+
+
+** mu4e
+
+ I like mu4e. It might be my favorite emacs mail client so far. Super
+ fast indexing. Anyway, it's a pain in the ass to keep updated through
+ the normal channels; I'll probably have to open up some git submodules
+ in .emacs.d/ anyway so I'll likely end up pointing a source there and just
+ building it out when need be. 
+
+*** TODO write interactive func to load mu4e after startup
+
+*** =Defun= Macro
+ Syntax: *defun* /name/ /args/ (/doc/) (/declare/) (/interactive/) /body.../
+
+ =defun= is the usual way to define new Lisp functions. It defines the
+ symbol /name/ as a function with argument list /args/ and body forms given
+ by /body.../ Neither /name/ nor /args/ should be quoted.
+
+ (/doc/), if present, should be a string specifying the function's
+ documentation string. 
+
+ /declare/, if present, should be a =declare= form
+ specifying function metadata. 
+
+ /interactive/, if present, should be an =interactive= form specifying how
+ the function is to be called interactively.
+
+ *The Return Value of* =defun= *is undefined*.
+
+*** dgn/call-mu4e
+
+ #+BEGIN_SRC emacs-lisp :tangle t :results "dgn-lib.el" :hlines t
+ (defun dgn/call-mu4e ()
+	"Loads mu4e if not already loaded."
+       (interactive)
+       (mu4e ())
+ )
+ #+END_SRC

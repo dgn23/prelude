@@ -1,38 +1,33 @@
-;; Text Library:
-;; For $emacs-dir/lib
+;; package-library.el
+;; dgn-mbp
 
-(eval-when-compile
-  (require 'use-package))
+(require 'use-package)
 (require 'bind-key)
 (require 'diminish)
 
 
 ;; yasnippets
 (use-package yasnippet
-  :load-path "/Users/dustinneuman/.emacs.d/.cask/25.0.50.1/elpa/yasnippet-20150811.1222"
-  :init (setq yas-snippet-dirs '("/Users/dustinneuman/.emacs.d/snippets"
-			  "/Users/dustinneuman/.emacs.d/.cask/25.0.50.1/elpa/yasnippet-20150811.1222")))
+  :ensure yasnippet
+  :defer t
+  :load-path "/Users/dustinneuman/.emacs.d/.cask/25.0.50.1/elpa/yasnippet-20150811.1222")
+ 
 
 (use-package auto-complete
-  :load-path "/Users/dustinneuman/.emacs.d/.cask/24.5.1/elpa/" ; FIX-MEE!
+  :load-path "/Users/dustinneuman/.emacs.d/.cask/25.0.50.1/elpa/auto-complete-20150618.1949"
   :ensure t
-  :defer 5
   :diminish "AC"
   :commands  (auto-complete global-auto-complete-mode)
   :bind ("M-TAB" . auto-complete)
-  :init
-        ;; (ac-config-default)
+  :init (ac-config-default)
         (global-auto-complete-mode t)
         (bind-keys :map ac-menu-map
-           ("C-n" . ac-next)
-          ("C-p"  . ac-previous))
+            ("C-n" . ac-next)
+            ("C-p"  . ac-previous))
         (bind-keys :map ac-completing-map
-          ("t"    . ac-expand)
-          ("r"    . ac-complete)
-          ("C-."  . ac-stop))
-  :config (progn
-;(use-package auto-complete-config :ensure auto-complete :load-path "~/.emacs.d/elisp/externals")
-;(use-package auto-complete-auctex :ensure auto-complete :load-path "~/.emacs.d/elisp/externals")
+            ("t"    . ac-expand)
+            ("r"    . ac-complete)
+            ("C-."  . ac-stop))
         (setq ac-use-quick-help t
               ac-use-comphist t
               ac-quick-help-delay 0.3
@@ -56,25 +51,32 @@
               ac-source-symbols
               ac-source-features
               ac-source-abbrev))
-      (setq ac-dictionary-files
-        '( "/Users/dustinneuman/dicts/LocalDictionary"
-            "/Users/dustinneuman/dicts/dict-latex-preamble.word-list"
-            "/Users/dustinneuman/dicts/dgn-dict.txt"
-            "/Users/dustinneuman/dicts/dict-ams-latex-env.word-list"
-            "/Users/dustinneuman/dicts/dicts-ams-latex-math.word-list"
-            "/Users/dustinneuman/dicts/dicts-ams-latex.word-list"
-            "/Users/dustinneuman/dicts/dict-latex-env.word-list"
-            "/Users/dustinneuman/dicts/dict-english-new.word-list"
-            "/Users/dustinneuman/dicts/dict-english-org.word-list"
-            "/Users/dustinneuman/dicts/dict-english.word-list"))))
+        (setq ac-dictionary-files
+          '( "/Users/dustinneuman/dicts/LocalDictionary"
+             "/Users/dustinneuman/dicts/dict-latex-preamble.word-list"
+             "/Users/dustinneuman/dicts/dgn-dict.txt"
+             "/Users/dustinneuman/dicts/dict-ams-latex-env.word-list"
+             "/Users/dustinneuman/dicts/dicts-ams-latex-math.word-list"
+             "/Users/dustinneuman/dicts/dicts-ams-latex.word-list"
+             "/Users/dustinneuman/dicts/dict-latex-env.word-list"
+             "/Users/dustinneuman/dicts/dict-english-new.word-list"
+             "/Users/dustinneuman/dicts/dict-english-org.word-list"
+             "/Users/dustinneuman/dicts/dict-english.word-list"))
+ :config (progn
+	(use-package auto-complete-config
+	   :ensure auto-complete
+	   :load-path "~/.emacs.d/.cask/25.0.50.1/elpa/auto-complete-20150618.1949")
+	(use-package auto-complete-auctex
+	   :ensure auto-complete
+	   :load-path "~/.emacs.d/.cask/25.0.50.1/elpa/auto-complete-auctex-20140223.958")))
 
 ;; Predictive -- DL first!
 (use-package predictive
   :load-path "~/.emacs.d/elisp/predictive"
-  :init (setq predictive-auto-learn t)
-  (setq predictive-use-buffer-local-dict t)
-  (setq predictive-fuzzy-completion t)
-  :defer 25
+  :init (setq predictive-auto-learn t
+              predictive-use-buffer-local-dict t
+	      predictive-which-dict-mode nil
+	      predictive-fuzzy-completion nil)
   :config (predictive-mode t))
 
 ;; Helm refactored
@@ -164,67 +166,36 @@
                (setq ispell-silently-savep t)))
 
 
-(use-package smex :defer 5
-   :init (global-set-key (kbd "M-X") 'smex))
-(use-package helm-descbinds       
-  ;:ensure helm
-  :config (helm-descbinds-mode))
-(use-package helm-buffers         
-  ;; :ensure helm
-  :config (setq helm-buffers-fuzzy-matching t))
-(use-package helm-descbinds       
-  ;; :ensure helm
-  :init (helm-descbinds-mode 1))
-(use-package helm-unicode         
-  ;; :ensure helm
-  :bind ("C-c h 8" . helm-unicode))
-(use-package flycheck             
-  :ensure t    :defer t)
-(use-package icicles              
-  :disabled t   :init (icicle-mode nil))
-(use-package golden-ratio         
-  :ensure t    :config (golden-ratio-mode t))
-(use-package pretty-mode          
-  :ensure t    :config (progn (global-pretty-mode t)))
-(use-package egg                  
-  :ensure t    :config (egg-set-global-mode))
-(use-package visible-mark         
-  :ensure t    :config (global-visible-mark-mode t))
-(use-package pallet               
-  :ensure t    :config (progn (pallet-mode t)))
-(use-package rainbow-mode         
-  :ensure t    :config (progn (rainbow-mode t)))
-(use-package pretty-lambdada      
-  :ensure t    :config (progn (global-pretty-lambda-mode t)))
-(use-package pretty-symbols       
-  :ensure t    :config (progn (global-prettify-symbols-mode t)))
-(use-package uniquify                          :config (setq uniquify-buffer-name-style 'forward))
-(use-package visual-regexp        
-  :ensure t    :bind (("C-c r" . vr/query-replace) ("C-c R" . vr/replace)))
-(use-package hl-line              
-  :ensure t    :init (global-hl-line-mode nil))
-(use-package paradox              
-  :ensure t    :init (progn (setq paradox-github-token  "c85391996956a3bbc7fe049a4ea2663f05806153"))
-  :bind (("C-c x p" . paradox-list-packages) ("C-c x P" . package-list-packages-no-fetch)))
-(use-package smooth-scrolling     
-  :ensure t    :config (setq smooth-scroll-margin 4))
-(use-package markdown-mode        
-  :ensure t :mode (("\\.md\\'" . markdown-mode) ("\\.mmd\\'" . markdown-mode) ("\\.markdown\\'" . markdown-mode)))
-(use-package undo-tree            
-  :ensure t :config (progn (setq undo-tree-mode-lighter nil) (setq global-undo-tree-mode nil)))
-(use-package fixmee               
-  :ensure t :defer 10 :config (progn (require 'button-lock) (global-fixmee-mode)))
-(use-package drag-stuff           
-  :ensure t :config (progn (setq drag-stuff-modifier '(meta shift)) (drag-stuff-global-mode t)))
-(use-package smart-tab            
-  :ensure t :config (progn(smart-tab-mode 1)))
-(use-package unicode-mode         
-  :load-path "~/.emacs.d/elisp/externals" :defer t  :diminish "Uni-Mode")
+(use-package smex              :defer 5 :init (global-set-key (kbd "M-X") 'smex))
+(use-package helm-descbinds    :config (helm-descbinds-mode))
+(use-package helm-buffers      :config (setq helm-buffers-fuzzy-matching t))
+(use-package helm-unicode      :bind ("C-c h 8" . helm-unicode))
+(use-package flycheck          :ensure t    :defer t)
+(use-package icicles           :disabled t   :init (icicle-mode nil))
+(use-package golden-ratio      :ensure t    :config (golden-ratio-mode t))
+(use-package pretty-mode       :ensure t    :config (progn (global-pretty-mode t)))
+(use-package egg               :ensure t    :config (egg-set-global-mode))
+(use-package visible-mark      :ensure t    :config (global-visible-mark-mode t))
+(use-package pallet            :ensure t    :config (progn (pallet-mode t)))
+(use-package rainbow-mode      :ensure t    :config (progn (rainbow-mode t)))
+(use-package pretty-lambdada   :ensure t    :config (progn (global-pretty-lambda-mode t)))
+(use-package pretty-symbols    :ensure t    :config (progn (global-prettify-symbols-mode t)))
+(use-package uniquify          :config (setq uniquify-buffer-name-style 'forward))
+(use-package visual-regexp     :ensure t    :bind (("C-c r" . vr/query-replace) ("C-c R" . vr/replace)))
+(use-package hl-line           :ensure t    :init (global-hl-line-mode nil))
+(use-package paradox           :ensure t     :bind (("C-c x p" . paradox-list-packages) ("C-c x P" . package-list-packages-no-fetch)))
+(use-package smooth-scrolling  :ensure t    :config (setq smooth-scroll-margin 4))
+(use-package markdown-mode     :mode (("\\.md\\'" . markdown-mode) ("\\.mmd\\'" . markdown-mode) ("\\.markdown\\'" . markdown-mode)))
+(use-package undo-tree         :ensure t :config (progn (setq undo-tree-mode-lighter nil) (setq global-undo-tree-mode nil)))
+(use-package fixmee            :ensure t :defer 10 :config (progn (require 'button-lock) (global-fixmee-mode)))
+(use-package drag-stuff        :ensure t :config (progn (setq drag-stuff-modifier '(meta shift)) (drag-stuff-global-mode t)))
+(use-package smart-tab         :ensure t :config (progn(smart-tab-mode 1)))
+(use-package unicode-mode      :load-path "~/.emacs.d/elisp/externals" :defer t  :diminish "Uni-Mode")
 
 
 ;;    auctex --- >> ALL THE LOAD PATHS BELOW NEED CHECKING/CHANGING ONCE YOU GET THAT SQUARED WITH NIX
 (use-package tex-site
-  :load-path "/Users/dustinneuman/.emacs.d/.cask/24.5.1/elpa/auctex-11.88.7/"
+  :load-path "/Users/dustinneuman/.emacs.d/.cask/25.0.50.1/elpa/auctex-11.88.8/"
   :ensure auctex
   :defer t
   :init (setq      TeX-auto-save t

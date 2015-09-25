@@ -13,7 +13,7 @@
   (normal-top-level-add-subdirs-to-load-path))
 
 (defvar emacs-dir (file-name-directory load-file-name)
-  "Set emacs root directory.")                  
+  "Set emacs root directory.")
 (defvar lib-dir (expand-file-name "library" emacs-dir)   		       ;; emacs-dir/lib
   "The core library for local emacs functionality")
 (defvar modules-dir (expand-file-name  "modules" emacs-dir)        ;; emacs-dir/modules
@@ -27,19 +27,6 @@
 (defvar savefile-dir (expand-file-name "savefile" emacs-dir) ;;emacs-dir/savefile
   "This folder stores all the automatically generated save/history-files.")
 
-
-;; Create the library, modules, personal, and savefile directories
-;; if they don't already exist
-
-;(unless (file-exists-p savefile-dir)
-;  (make-directory emacs-savefile-dir))
-;(unless (file-exists-p lib-dir)
-;	(make-directory lib-dir))
-;(unless (file-exists-p modules-dir)
-;	(make-directory modules-dir))
-;(unless (file-exists-p personal-dir)
-;	(make-directory personal-dir))
-
 (defun add-subfolders-to-load-path (parent-dir)
  "Add all level PARENT-DIR subdirs to the `load-path'."
  (dolist (f (directory-files parent-dir))
@@ -50,7 +37,7 @@
        (add-subfolders-to-load-path name)))))
 
 ;; add emacs directories to Emacs's `load-path'
-(add-to-list 'load-path lib-dir) ;; to add a file to load-path, add its containing directory.
+(add-to-list 'load-path lib-dir)
 (add-to-list 'load-path modules-dir)
 (add-to-list 'load-path personal-dir)
 (add-subfolders-to-load-path personal-dir)
@@ -59,8 +46,8 @@
 
 ;; Tell emacs about the proper load-path
 (add-to-list 'load-path "~/.emacs.d/.cask/")
-(add-to-list 'load-path "~/.emacs.d/.cask/24.5.1/bootstrap")
-(add-to-list 'load-path "~/.emacs.d/.cask/24.5.1/elpa")
+(add-to-list 'load-path "~/.emacs.d/.cask/25.0.50.1/bootstrap")
+(add-to-list 'load-path "~/.emacs.d/.cask/25.0.50.1/elpa")
 (add-to-list 'load-path "~/.emacs.d/predictive")
 
 ;; config changes made through the customize UI will be stored here
@@ -84,7 +71,7 @@
            "/usr/local/sbin" ":"
            "~/.rvm/bin" ":"
            "/usr/texbin/" ":"
-           "/usr/local/texlive/2011/bin/x86_64-darwin" ":"
+           "/usr/local/texlive/2015/bin/x86_64-darwin" ":"
            (getenv "PATH")))
   (setq exec-path
         '("/usr/local/bin"
@@ -124,12 +111,22 @@
 ;; Package Mode Setup
 
 (package-initialize)
+
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(unless (package-installed-p 'pallet)
+  (package-refresh-contents)
+  (package-install 'pallet))
+
 (require 'use-package)
 (require 'bind-key)
 (require 'diminish)
 (require 'cl-lib)
 (require 'uniquify)
 (require 'exec-path-from-shell)
+(require 'seq)
 
 ;; Cask/Pallet
 
@@ -140,18 +137,12 @@
 (pallet-mode t)
 
 
-;; Bootstrap `use-package'
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(unless (package-installed-p 'pallet)
-  (package-refresh-contents)
-  (package-install 'pallet))
-
 (load-file "~/.emacs.d/library/default-settings-lib.el")
 (load-file "~/.emacs.d/library/package-library.el")
-(load-file "~/.emacs.d/modules/dgn-c-org.el")
-(load-file "~/.emacs.d/modules/dgn-g-gnus.el")
 (load-file "~/.emacs.d/personal/custom.el")
+(load-file "~/.emacs.d/modules/dgn-c-org.el")
+(load-file "~/.emacs.d/modules/dgn-m-mu4e.el")
+(load-file "~/.emacs.d/personal/percustom.el")
 
-(message "emacs is up and running!")
+
+(print "emacs is up and running!")
